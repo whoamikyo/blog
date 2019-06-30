@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>Oneplus 7 Pro 刷机教程</title>
+      <link href="/2019/06/13/oneplus-7-pro-shua-ji-jiao-cheng/"/>
+      <url>/2019/06/13/oneplus-7-pro-shua-ji-jiao-cheng/</url>
+      
+        <content type="html"><![CDATA[<p><strong>不同批次的手机安装的出厂H2OS版本不同, 本流程不一定适用于所有手机.</strong></p><h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><ol><li>从<a href="https://developer.android.com/studio/releases/platform-tools" target="_blank" rel="noopener">这里</a>下载相关工具包</li><li>系统设置-关于手机 点击7次系统版本号 开启开发者模式</li><li>开发者模式中开启”高级重启”和”OEM解锁”</li><li>长按电源键, 选择重启到引导加载器</li><li>连接电脑, 在电脑上运行 <code>fastboot oem unlock</code></li><li>在手机上确认</li></ol><h3 id="氧OS"><a href="#氧OS" class="headerlink" title="氧OS"></a>氧OS</h3><p>绝大部分手机出厂预装的H2os中BootLoader的版本较低, 不支持安装TWRP. 需先安装O2OS.</p><ol><li>到<a href="https://otafsg1.h2os.com/patch/amazone2/GLO/OnePlus7ProOxygen/OnePlus7ProOxygen_21.O.11_GLO_011_1906160627/OnePlus7ProOxygen_21.O.11_OTA_011_all_1906160627_b59b4dfc6d8c9a.zip" target="_blank" rel="noopener">这里</a>下载O2OS, 并用adb导入到手机中.</li><li>在手机设置-系统更新-本地升级中, 选择此ZIP包.</li><li>若成功刷入, 即可开始刷入TWRP.</li><li>若刷入不成功, 则预装的H2os版本较高. 使用以下步骤安装O2OS:<ol><li>将安装包通过adb导入手机中, 重启进入bootloader, 连接电脑</li><li>在电脑上从<a href="https://twrp.me/oneplus/oneplus7pro.html" target="_blank" rel="noopener">这里</a> 下载TWRP的两个文件(img,zip)</li><li>电脑上运行 <code>fastboot boot twrp-3.3.1-3-guacamole.img</code></li><li>手机会重启进入TWRP. 三清后刷入氧os安装包, 刷入后再进行一次三清</li><li>重启进入系统. 若无限循环进入revocery, 则再次连接电脑, 运行fastboot指令进入TWRP后选择 Advanced - Fix Revocery Bootloop</li></ol></li></ol><h3 id="TWRP"><a href="#TWRP" class="headerlink" title="TWRP"></a>TWRP</h3><ol><li>在电脑上从<a href="https://twrp.me/oneplus/oneplus7pro.html" target="_blank" rel="noopener">这里</a> 下载TWRP的两个文件(img,zip)</li><li>将zip文件通过adb导入手机</li><li>手机重启进入 Bootloader 连接电脑</li><li>电脑上运行 <code>fastboot boot twrp-3.3.1-3-guacamole.img</code></li><li>手机会进入临时的TWRP. 在此临时的TWRP中选择刷入上面导入的 TWRP zip 包</li></ol><h3 id="Magisk"><a href="#Magisk" class="headerlink" title="Magisk"></a>Magisk</h3><ol><li>下载 Magisk Manager 以及 magisk zip包</li><li>重启进入 Revocery , 刷入ZIP包即可.</li></ol><h3 id="OTA"><a href="#OTA" class="headerlink" title="OTA"></a>OTA</h3><p>按照O2OS - TWRP - Magisk的顺序刷入即可.</p><ol><li>下载完整包, 并准备好TWRP安装包, Magisk安装包. 重启进入TWRP.</li><li>TWRP内先后刷入ROM与TWRP</li><li>TWRP内选择重启到另一个slot</li><li>TWRP内安装Magisk</li><li>重启进入系统</li></ol>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 刷机 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Oneplus 7 Pro 初体验</title>
+      <link href="/2019/06/12/oneplus-7-pro-chu-ti-yan/"/>
+      <url>/2019/06/12/oneplus-7-pro-chu-ti-yan/</url>
+      
+        <content type="html"><![CDATA[<p><strong>这是一篇站在消费者个人角度的陈述.</strong></p><p><strong>本人不善言辞, 尽请谅解.</strong></p><h2 id="买前"><a href="#买前" class="headerlink" title="买前"></a>买前</h2><p><img src="/medias/oneplus-1.jpg" alt="一加7Pro 星雾蓝"><br>高考前就一直在想高考后要换个手机, 高考后仔细敲定, 基于以下原因选择了一加7Pro:</p><ol><li>一加对刷机友好, Root方便.</li><li>屏幕90Hz,2K (买之前看官方宣传只是觉得很厉害,真正到手体验一天后才会发现用起来有多爽)</li><li>配置基本是顶级(855, 8+256, UFS3.0储存)</li><li>摄像头不错(48+16+8 MP Triple Camera), 将来可能配合云台拍Vlog</li></ol><h2 id="买中"><a href="#买中" class="headerlink" title="买中"></a>买中</h2><p>看到6月10日10:00官网上开卖的消息, 结合前几次10点开卖, 12点还有货, 我就没有特别准时抢. 10:01打开一加官网的时候就显示已经售罄了.<br>(同时还观测到另一个问题: 使用最新安卓chrome打开一加官网, 官网上的登录滑动验证码总是无法完成, 不知道什么原因.)<br>约好和R同学同时抢的我微信上问了问R同学,于是就发生了以下的故事:<br><img src="/medias/oneplus-2.png" alt="聊天"><br>确认官网抢不到之后, 我在刷朋友圈的时候偶然发现同学在京东官网上买到了, 立即打开京东官网, 下单. 下单过程之中还发现, 8+256的机器是4499元. 所以如果在官网上买的话, 加一个289多元的碎屏险后是4788多元. 可是在京东上买相同的官方碎屏险只需要4699元, 便宜了几十块钱. </p><p>不知道为什么官网价格和京东价格不一样? </p><p>(同时,官网无货, 京东官方旗舰店有货这种骚操作我也不能理解)</p><h2 id="到手"><a href="#到手" class="headerlink" title="到手"></a>到手</h2><p>机器到手之后, 开箱, 解锁, 并没有感受到各路评测所描述的 <strong>“惊艳”</strong> 的屏幕. (甚至到手的第一感觉只是星雾蓝后盖挺好看).</p><p>我的机器到手之后的流程就是 刷氧os - 刷twrp - 刷 magisk. 在此过程中, 踩到了不少坑, 我会将相关内容整理到<a href="#">这里</a>.</p><p>全部刷好之后, 三清, 重新初始化. 初始化过程中直接在网络环境较好的地方, Google账户第一时间登录, 就自动把配置下载下来了. </p><p>惊喜到我的是, 不仅通讯录之类的信息同步到了新手机上, 就连gboard的配置也一起同步了过来. 最惊奇的是, 就连我手机热点的配置的wifi名称和密码都一起同步了过来. 在国内, 谷歌框架的配置同步和迁移功能真是体验比小米等品牌强得多.</p><p>在安装国内软件的过程中, 这次的全新装机我采用了一下原则:</p><ol><li>能在 Google Play 安装尽量在上面安装, 不能的在酷安上安装.</li><li>对于 <strong>所有</strong> 我没有观察到兼容性问题的应用开启存储重定向.<br>这样子, 在这个新手机上我的收获就是极其整洁的SD卡根目录. 在根目录中, 除了系统创建的文件夹以及magisk插件创建的一个文件之外, 没有任何应用创建的文件. 截至撰写本文时, 没有观测到任何兼容性问题. (应用间分享文件可通过Bridge应用解决)</li></ol><h2 id="拍照体验"><a href="#拍照体验" class="headerlink" title="拍照体验"></a>拍照体验</h2><p>由于还没来得及测试夜景, 在此放出几张在故宫拍摄的照片:</p><p><img src="/medias/IMG_20190611_082626.jpg" alt="故宫1"><br><img src="/medias/IMG_20190611_085806.jpg" alt="故宫2"><br><img src="/medias/IMG_20190611_084744_01.jpg" alt="故宫3"></p><h2 id="使用体验"><a href="#使用体验" class="headerlink" title="使用体验"></a>使用体验</h2><p>在故宫玩了一天(体验一天一加7p)后, 再用回之前的一加3t, 突然特别不适应. 各种操作都显得不”顺滑”, 顶部和底部的大黑边看上去也很不爽… 总之, 正如评测们所述, 一旦用惯了一加7p, 你就再也回不去了.</p><h2 id="一些坑点"><a href="#一些坑点" class="headerlink" title="一些坑点:"></a>一些坑点:</h2><ol><li>默认使用的是虚拟按键, 若要使用全面屏手势需要手动开启</li><li>不同批次的机器预装的氢os版本不同, <strong>刷机方法不同</strong> (我和R同学的两台机器是<strong>同时</strong>购买的, <strong>同时</strong>在同一京东仓库出货, 当R同学使用我刷机成功的方式时差点变砖. )</li><li>前置摄像头伸出需要至少半秒左右</li><li>官网购买流程体验极差.</li></ol><p>小弟不才, 在此赋诗一首:<br>官网下单需警惕,价格<strong>坑人</strong>不客气.<br>奈何<strong>强东美价廉</strong>,京东小哥做兄弟.</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> General </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 无聊瞎写点东西 </tag>
+            
+            <tag> 日常 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hello, World!</title>
+      <link href="/2019/06/12/hello-world/"/>
+      <url>/2019/06/12/hello-world/</url>
+      
+        <content type="html"><![CDATA[<h2 id="起源"><a href="#起源" class="headerlink" title="起源"></a>起源</h2><p>高考前, 就一直想弄一个自己的blog. Wordpress, typeecho, 试过了许多程序, 也弄过好多次各类blog, 最终都不了了之.</p><p>这一次,打算还是用hexo弄. 选用hexo的原因呢, 主要有:</p><ol><li>可以用 Github Pages 部署, 没有服务器费用, 没有被攻击的风险.</li><li>Markdown 书写, 更方便</li><li>将来还可能搞个微信公众号, so 用 Markdown 书写的话, 可以使用批量工具将 Blog 内的内容复制到微信公众号中.</li></ol><h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><p>先是看了看<a href="hexo.io">官方文档</a>, 研究了下hexo怎么用. 接着翻了翻收藏, 找到了以前收藏的一个hexo主题 <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank" rel="noopener">Matery</a>. Clone下来配置一通后, 就完成了你们现在看到的 Blog.</p><h2 id="愿景"><a href="#愿景" class="headerlink" title="愿景"></a>愿景</h2><p>将来可能更新的内容:</p><ol><li>TensorFlow教程</li><li>自己写的一些PHP插件</li><li>自己搞的物联网小设备</li><li>自己在B站上传的VLog(可能跳票)</li></ol><h2 id="联系我"><a href="#联系我" class="headerlink" title="联系我"></a>联系我</h2><p>如果想挂个友联, 欢迎邮箱联系 <code>i@leoleoasd.me</code></p><p>有其他想法或者建议, 也可以给我发邮件.</p><p>(突然想起来高考备考的应用文套路:  <code>If you have any further questions, feel free to drop me a line.</code>)</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> General </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 无聊瞎写点东西 </tag>
+            
+            <tag> 日常 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
+</search>
