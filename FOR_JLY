@@ -1,12 +1,3 @@
-import pixel
-
-import time
-import ntptime
-import config
-ntptime.host="cn.ntp.org.cn"
-ntptime.time()
-ntptime.settime()
-
 t = pixel.Pixel()
 t.interval = 1000
 t.init()
