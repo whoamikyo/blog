@@ -507,6 +507,28 @@
     </div>
 
     
+        <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: '88c392c2c9081f351ae0',
+        clientSecret: '40c7d846bf7e66487a0fc35a4176a522bb723100',
+        repo: 'blog',
+        owner: 'leoleoasd',
+        admin: "leoleoasd",
+        id: '2019-06-13T13-04-28',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+    
 
     
 
