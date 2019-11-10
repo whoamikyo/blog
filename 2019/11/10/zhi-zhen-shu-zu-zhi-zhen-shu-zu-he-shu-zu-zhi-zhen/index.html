@@ -4,15 +4,8 @@
 
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="C++与C的区别, c++ python machine_learning php golang">
-    <meta name="description" content="CPP 与 C区别1: 头文件不同C++头文件没有.h
-C语言:
-#include &amp;lt;stdio.h&gt;
-
-C++语言:
-#include &amp;lt;cstdio&gt;
-#include &amp;lt;stack&gt; // C++头文件
-如果要在c+">
+    <meta name="keywords" content="指针 数组 指针数组和数组指针, c++ python machine_learning php golang">
+    <meta name="description" content="指针 数组 指针数组和数组指针 | Leo">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -20,7 +13,7 @@ C++语言:
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>C++与C的区别 | Leo</title>
+    <title>指针 数组 指针数组和数组指针 | Leo</title>
     <link rel="icon" type="image/png" href="/medias/leo@4x-1.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -240,13 +233,13 @@ C++语言:
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        C++与C的区别
+                        指针 数组 指针数组和数组指针
                     </div>
                 </div>
             </div>
@@ -356,13 +349,9 @@ C++语言:
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                    <div class="article-tag">
-                        
-                            <a href="/tags/公众号同步推送/">
-                                <span class="chip bg-color">公众号同步推送</span>
-                            </a>
-                        
-                    </div>
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
                     
                 </div>
                 <div class="col s5 right-align">
@@ -373,14 +362,14 @@ C++语言:
             <div class="post-info">
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-11-09
+                    2019-11-10
                 </div>
 
                 
                     
                     <div class="info-break-policy">
                         <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        281
+                        0
                     </div>
                     
 
@@ -403,46 +392,7 @@ C++语言:
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="CPP-与-C"><a href="#CPP-与-C" class="headerlink" title="CPP 与 C"></a>CPP 与 C</h1><h3 id="区别1-头文件不同"><a href="#区别1-头文件不同" class="headerlink" title="区别1: 头文件不同"></a>区别1: 头文件不同</h3><p>C++头文件没有.h</p>
-<pre class="line-numbers language-cpp"><code class="language-cpp">C语言<span class="token operator">:</span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stdio.h></span></span>
-
-C<span class="token operator">++</span>语言<span class="token operator">:</span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;cstdio></span></span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;stack></span> </span><span class="token comment" spellcheck="true">// C++头文件</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>如果要在c++代码中引用c语言的库, 去掉.h, 并在最前面加上c.</p>
-<pre class="line-numbers language-cpp"><code class="language-cpp">string<span class="token punctuation">.</span>h <span class="token operator">>></span><span class="token operator">></span> cstring
-stdio<span class="token punctuation">.</span>h  <span class="token operator">>></span><span class="token operator">></span> cstdio
-stdlib<span class="token punctuation">.</span>h <span class="token operator">>></span><span class="token operator">></span> cstdlib
-<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="区别2-读入输出方式不同"><a href="#区别2-读入输出方式不同" class="headerlink" title="区别2: 读入输出方式不同."></a>区别2: 读入输出方式不同.</h3><p><strong>c++语言中只要引用了库吗仍然可以用c语言的输入输出函数</strong>.</p>
-<pre class="line-numbers language-cpp"><code class="language-cpp">C<span class="token operator">++</span><span class="token operator">:</span>
-<span class="token macro property">#<span class="token directive keyword">include</span> <span class="token string">&lt;iostream></span></span>
-<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-    <span class="token keyword">int</span> a<span class="token punctuation">;</span>
-    <span class="token keyword">char</span> b<span class="token punctuation">;</span>
-    <span class="token keyword">char</span> str<span class="token punctuation">[</span><span class="token number">100</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
-    cin<span class="token operator">>></span>a<span class="token operator">>></span>b<span class="token operator">>></span>str<span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">// 读入 cin 右箭头 变量名</span>
-    <span class="token comment" spellcheck="true">// 不需要&amp;</span>
-    cout<span class="token operator">&lt;&lt;</span>a<span class="token operator">&lt;&lt;</span>b<span class="token operator">&lt;&lt;</span>str<span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">// 输出 cout 左箭头 变量名</span>
-    <span class="token comment" spellcheck="true">// endl和输出"\n"几乎等价, 但尽量用endl</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="区别3-命名空间"><a href="#区别3-命名空间" class="headerlink" title="区别3: 命名空间"></a>区别3: 命名空间</h3><p>死记硬背即可, c++代码需要在引用头文件后添加一行</p>
-<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h3 id="区别4-布尔类型"><a href="#区别4-布尔类型" class="headerlink" title="区别4: 布尔类型"></a>区别4: 布尔类型</h3><p>c++语言自带布尔类型. 存储的是真和假两种情况.</p>
-<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">bool</span> a <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//假, 与0等价</span>
-a <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 真, 与1等价</span>
-<span class="token comment" spellcheck="true">// 注意不要写为ture和flase</span>
-<span class="token keyword">if</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">{</span>
-    <span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
-    <span class="token function">bar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><del>c语言引用stdbool.h后也有, 但是课内不讲</del></p>
-
+                
             </div>
             <hr/>
 
@@ -478,8 +428,8 @@ a <span class="token operator">=</span> <span class="token boolean">true</span><
                 </a>
             </div>
             <br/>
-            <a  href="/2019/11/09/c-yu-c-de-qu-bie/">
-                《C++与C的区别》
+            <a  href="/2019/11/10/zhi-zhen-shu-zu-zhi-zhen-shu-zu-he-shu-zu-zhi-zhen/">
+                《指针 数组 指针数组和数组指针》
             </a> 由
             <a href="http://leoleoasd.me">
                 Leo
@@ -521,7 +471,7 @@ a <span class="token operator">=</span> <span class="token boolean">true</span><
         repo: 'blog',
         owner: 'leoleoasd',
         admin: "leoleoasd",
-        id: '2019-11-09T19-17-26',
+        id: '2019-11-10T18-59-09',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -542,9 +492,10 @@ a <span class="token operator">=</span> <span class="token boolean">true</span><
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="fas fa-chevron-left"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2019/11/10/zhi-zhen-shu-zu-zhi-zhen-shu-zu-he-shu-zu-zhi-zhen/">
                     <div class="card-image">
@@ -562,9 +513,9 @@ a <span class="token operator">=</span> <span class="token boolean">true</span><
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2019-11-10
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-11-10
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -573,6 +524,7 @@ a <span class="token operator">=</span> <span class="token boolean">true</span><
                         </span>
                     </div>
                 </div>
+
                 
             </div>
         </div>
@@ -583,25 +535,26 @@ a <span class="token operator">=</span> <span class="token boolean">true</span><
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/11/09/lecture1-bi-ji/">
+                <a href="/2019/11/09/c-yu-c-de-qu-bie/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="Lecture1 笔记">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="C++与C的区别">
                         
-                        <span class="card-title">Lecture1 笔记</span>
+                        <span class="card-title">C++与C的区别</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            递归把大问题分解为多个相似的小问题.
-电影院问题: 获取人数, 如何获取?
-函数 获取人数:
-    如果 前面没人 返回1
-    否则 问前面的人 前面有几个人 返回这个数+1
-汉诺塔问题:
-定义一个函数, 移动n个饼. 如果n=1, 
+                            CPP 与 C区别1: 头文件不同C++头文件没有.h
+C语言:
+#include &lt;stdio.h>
+
+C++语言:
+#include &lt;cstdio>
+#include &lt;stack> // C++头文件
+如果要在c+
                         
                     </div>
                     <div class="publish-info">
