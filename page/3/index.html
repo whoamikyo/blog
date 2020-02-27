@@ -169,6 +169,269 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://leoleoasd.me/2019/11/09/pai-xu-suan-fa/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Leo">
+      <meta itemprop="description" content="Yet another blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Leo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/09/pai-xu-suan-fa/" class="post-title-link" itemprop="url">排序算法</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-11-09 19:12:42 / 修改时间：19:12:49" itemprop="dateCreated datePublished" datetime="2019-11-09T19:12:42+08:00">2019-11-09</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="各类排序算法及比较"><a href="#各类排序算法及比较" class="headerlink" title="各类排序算法及比较"></a>各类排序算法及比较</h1><h3 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序:"></a>选择排序:</h3><p>每次选择还未排序的值中最小的一个, 和第一个交换.</p>
+<p>思路很清晰, 代码很好写, 时间复杂度为O(n^2).</p>
+<h4 id="伪代码"><a href="#伪代码" class="headerlink" title="伪代码:"></a>伪代码:</h4><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">// 要排序的数组: data[n]</span>
+循环i从<span class="token number">0</span>到n<span class="token number">-1</span><span class="token operator">:</span>
+    min <span class="token operator">=</span> <span class="token number">0x7fffffff</span>
+    pos <span class="token operator">=</span> <span class="token number">0</span>
+    循环j从i到n<span class="token number">-1</span><span class="token operator">:</span>
+        如果 min <span class="token operator">></span> data<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">:</span>
+            pos <span class="token operator">=</span> j
+            min <span class="token operator">=</span> data<span class="token punctuation">[</span>j<span class="token punctuation">]</span>
+    交换data<span class="token punctuation">[</span>pos<span class="token punctuation">]</span>与data<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码:"></a>代码:</h4><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">int</span> i<span class="token punctuation">,</span>j<span class="token punctuation">,</span>min<span class="token punctuation">,</span>pos<span class="token punctuation">,</span>t<span class="token punctuation">;</span>
+<span class="token keyword">for</span><span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> <span class="token operator">++</span> i<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    min <span class="token operator">=</span> <span class="token number">0x7fffffff</span><span class="token punctuation">;</span>
+    pos <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span>j <span class="token operator">=</span> i<span class="token punctuation">;</span> j <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> <span class="token operator">++</span> j<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>min <span class="token operator">></span> data<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            pos <span class="token operator">=</span> j<span class="token punctuation">;</span>
+            min <span class="token operator">=</span> data<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    t <span class="token operator">=</span> data<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    data<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> data<span class="token punctuation">[</span>pos<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    data<span class="token punctuation">[</span>pos<span class="token punctuation">]</span> <span class="token operator">=</span> t<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h3><p>枚举相邻的两个, 如果前者大于后者, 交换.</p>
+<p>经过每一轮比较, 最大的一个一定会跑到数组最后面, 就像气泡浮出水面的过程, 因此叫做冒泡排序.</p>
+<p>思路简单, 代码好写, 时间复杂度O(n^2).</p>
+<h4 id="伪代码-1"><a href="#伪代码-1" class="headerlink" title="伪代码:"></a>伪代码:</h4><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">// 要排序的数组: data[n]</span>
+循环i从<span class="token number">0</span>到n<span class="token number">-2</span><span class="token operator">:</span>
+    循环j从<span class="token number">0</span>到n<span class="token operator">-</span>i<span class="token number">-2</span><span class="token operator">:</span>
+        如果 data<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">></span> data<span class="token punctuation">[</span>j<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token operator">:</span>
+            交换data<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">,</span> data<span class="token punctuation">[</span>j<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="代码1"><a href="#代码1" class="headerlink" title="代码1:"></a>代码1:</h4><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">int</span> i<span class="token punctuation">,</span>j<span class="token punctuation">,</span>t<span class="token punctuation">;</span>
+<span class="token keyword">for</span><span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token number">-1</span><span class="token punctuation">;</span> <span class="token operator">++</span> i<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span>j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> n<span class="token operator">-</span>i<span class="token number">-1</span><span class="token punctuation">;</span> <span class="token operator">++</span> j<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>data<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">></span> data<span class="token punctuation">[</span>j<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            t <span class="token operator">=</span> data<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token punctuation">;</span>
+            data<span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">=</span> data<span class="token punctuation">[</span>j<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+            data<span class="token punctuation">[</span>j<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> t<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="代码2"><a href="#代码2" class="headerlink" title="代码2:"></a>代码2:<a href="邓俊辉.数据结构(C++语言版).第三版.北京:清华大学出版社,2013:5-5"></a></h3><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">int</span> sorted <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> t <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token keyword">while</span><span class="token punctuation">(</span> <span class="token operator">!</span>sorted <span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token comment" spellcheck="true">//当还没排序好</span>
+    sorted <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//先认为已经排序好</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span> <span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span> <span class="token operator">++</span> i <span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span> data<span class="token punctuation">[</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">></span> data<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token punctuation">)</span><span class="token punctuation">{</span>
+            t <span class="token operator">=</span> data<span class="token punctuation">[</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+            data<span class="token punctuation">[</span>i <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> data<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+            data<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> t<span class="token punctuation">;</span>
+            sorted <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">// 还没排序完毕</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    n<span class="token operator">--</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 最后一位已经排序好, 可以不用管它了</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>借助标志位sorted, 能使得程序在已经排序完毕之后提前退出.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://leoleoasd.me/2019/11/09/dai-ma-de-ge-shi-yu-bian-liang-de-ming-ming/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Leo">
+      <meta itemprop="description" content="Yet another blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Leo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/09/dai-ma-de-ge-shi-yu-bian-liang-de-ming-ming/" class="post-title-link" itemprop="url">代码的格式与变量的命名</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-11-09 19:12:05 / 修改时间：19:12:28" itemprop="dateCreated datePublished" datetime="2019-11-09T19:12:05+08:00">2019-11-09</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="代码的格式与变量的命名"><a href="#代码的格式与变量的命名" class="headerlink" title="代码的格式与变量的命名"></a>代码的格式与变量的命名</h1><p><del>(今天没题了)</del></p>
+<p>正确的代码格式能够让你一眼就看清楚代码的架构, 同时, 当你拿着你的代码问别人的时候, <del>正确的代码格式会让别人更愿意回答你的问题</del>, 别人也能更轻松找到你代码中的错误.</p>
+<p>那么, 如何才是正确的代码格式呢?</p>
+<h3 id="大括号与缩进"><a href="#大括号与缩进" class="headerlink" title="大括号与缩进"></a>大括号与缩进</h3><p>大括号的风格有两种: 换行与不换行</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">// 换行</span>
+<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    blah<span class="token punctuation">;</span>
+    blah<span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>foo<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        blah<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">else</span>
+    <span class="token punctuation">{</span>
+        blah<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">// 不换行</span>
+<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    blah<span class="token punctuation">;</span>
+    blah<span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>foo<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        blah<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
+        blah<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><del>个人更习惯后者</del>. 需要注意的就是 <strong>每遇到一个左大括号, 下一行一定要多缩进一格, 遇到一个右大括号, 下一行少缩进一格</strong>. 这样的结构能够让我们更清楚地看到多层if与for之间的层次结构关系.</p>
+<p><strong>在一般的IDE上</strong>, 选中多行代码按<code>Tab</code>键(Q左边的)即可给这几行代码的开头添加一个锁紧, 按<code>shitf-Tab</code>即可去掉一个缩进.</p>
+<p>同时, 大部分IDE的默认设置均是<strong>使用空格缩进, 每次缩进4个空格</strong>. 在某些IDE上(比如DevCPP)默认设置是使用制表符缩进, 这种设置的代码在粘贴到别的地方的时候可能出现格式错位, 建议修改为空格缩进.</p>
+<p>修改方式: Devcpp中依次打开<code>工具(Tools)-编译器选项(Compiler Options)</code>, 把左下角的<code>&quot;标签&quot;(tab)</code>选项卡中的<code>&quot;使用tab字符&quot;</code>去掉, 将<code>tab位置(Tab size)</code>修改为4.</p>
+<p>其他IDE的修改方式大同小异.</p>
+<h3 id="空格"><a href="#空格" class="headerlink" title="空格"></a>空格</h3><p>在<code>&lt; &gt; = != == ^ * + - &amp;&amp;</code>等运算符的<code>左右</code>加上空格,如:</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">if</span><span class="token punctuation">(</span>a <span class="token operator">&lt;</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span>a <span class="token operator">!=</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span>foo <span class="token operator">^</span> bar<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+foo <span class="token operator">=</span> bar<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>在每一个逗号的后面添加一个空格,如:</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d%d%d%d"</span><span class="token punctuation">,</span> a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> c<span class="token punctuation">,</span> d<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>在for循环中的分号后面加一个空格, 如:</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// PS: 在某些环境下, for循环中使用++i比i++快一丢丢</span>
+
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>在<code>! &amp;</code>等一元运算符(只有一个参数的运算符)后<strong>不加空格</strong>,如:</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d%d%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>a<span class="token punctuation">,</span> <span class="token operator">&amp;</span>b<span class="token punctuation">,</span> <span class="token operator">&amp;</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>a<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="变量和函数的命名"><a href="#变量和函数的命名" class="headerlink" title="变量和函数的命名"></a>变量和函数的命名</h1><p>有意义的变量名字能够让阅读你代码的人立刻理解变量的意义是什么, 方便代码交流.</p>
+<p><strong>变量命名并没有清晰的规范, 以下的都是作者的个人经验</strong></p>
+<p>循环变量命名: <code>i j k</code></p>
+<p>和总量大小有关的变量命名: <code>m n</code></p>
+<p>数组的命名: <code>data[MAXN][MAXN] array[MAXN][MAXN]</code></p>
+<p>标志的命名: <code>flag</code><br>如:</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token function">isPrime</span><span class="token punctuation">(</span><span class="token keyword">int</span> n<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">int</span> flag <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span> i <span class="token operator">*</span> i <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span> <span class="token operator">++</span> i<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>n <span class="token operator">%</span> i <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            flag <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 表明找到因子</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>flag<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 如果有因子</span>
+        <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>字符串命名: <code>str1 str2</code></p>
+<p>用英文单词命名: <code>scores[MAXN] students[MAXN]</code></p>
+<p>如果名字中要有多个英文单词, 有两种命名方式:</p>
+<ol>
+<li>驼峰命名法(camel case) 第一个字母小写, 之后每个单词的首字母大写:<br><code>thisIsAVeryLongVariableNameForSomeVeryStupidReason</code></li>
+<li>蛇形命名法(snake case) 单词和单词之间用下滑线连接<br><code>this_is_a_very_long_variable_name_for_some_very_stupid_reason</code></li>
+</ol>
+<p>两种命名方式均被广泛使用, 根据个人习惯选择即可. <del>作者印象里c语言常用的是蛇形命名法, 但不确定</del></p>
+<p>(不推荐, 但是比无意义命名好)汉语拼音命名: <code>xueshengfenshu[MAXN]</code></p>
+<p>函数命名:</p>
+<p>英文单词命名, 尽量<strong>动词开头</strong>, 如:<br><code>is_prime get_numbers solve</code></p>
+<p>算法名字命名, 如:<br><code>dfs dfs prim dijkstra</code></p>
+<p>绝对不能用的命名: <code>mian</code></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://leoleoasd.me/2019/11/09/sui-yuan-zhi-bei-dai-ma-cha-cuo-zhi-bei/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -524,197 +787,6 @@ k <span class="token operator">=</span> <span class="token number">1</span>
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://leoleoasd.me/2019/06/30/mac-shang-docker-de-yi-xie-keng/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Leo">
-      <meta itemprop="description" content="Yet another blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Leo">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/06/30/mac-shang-docker-de-yi-xie-keng/" class="post-title-link" itemprop="url">Mac上Docker的一些坑</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-06-30 16:37:19" itemprop="dateCreated datePublished" datetime="2019-06-30T16:37:19+08:00">2019-06-30</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-11-10 19:00:21" itemprop="dateModified" datetime="2019-11-10T19:00:21+08:00">2019-11-10</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/折腾笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">折腾笔记</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>在搭建我的个人开发环境的过程中, 对于PHP开发我选择了Docker这样的方案. 这种方案相比valet最大的好处就在于自由: 可以自由定制自己所需的nginx配置, php配置, 在安装php插件时也会方便一些.<br>但是, 在搭建完毕运行之后, 碰到了许多坑.<br>我最先搭建的是WHMCS测试站. 搭建完毕之后发现无论打开什么页面, 最短的加载时间也在5s左右. 对于搭建在本地的whmcs来讲, 这自然是十分不正常的, 百度了一下如何解决之后, 我决定开启php-fpm的slowlog来看看是哪里出了问题.<br>在docker中开启slowlog之后, 超时时间设置为了1s, 但是当页面加载时间为5s时, log文件内仍无任何内容.<br>Google了一番, 发现php-fpm使用SYS_PTRACE这一个系统调用来统计程序运行的时间, 而默认情况下docker容器内并没有此权限, 只要在docker-compose.yml内加入 <code>privileged: true</code> 即可解决问题.<br>这就是第一个坑: <code>PHP-fpm在无任何错误提示的时候不能产出slowlog</code></p>
-<p>折腾了半天终于能看到slowlog了, 内容却让我很疑惑: </p>
-<pre class="line-numbers language-log"><code class="language-log">[30-Jun-2019 15:33:20]  [pool www] pid 10
-script_filename = /data/www/whmcs//admin/login.php
-[0x00007f063aa211b0] Composer\Autoload\includeFile() /data/www/whmcs/vendor/composer/ClassLoader.php:322
-[0x00007f063aa21120] loadClass() unknown:0
-[0x00007f063aa210c0] spl_autoload_call() unknown:0
-[0x00007ffdbaff9320] ???() /data/www/whmcs/loghandler.php:44<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>占据主要时间的前三个函数都是composer的函数, 貌似没有任何解决方案. 在Google一番之后, 发现这里的慢主要在于 OS X 下的 Docker 磁盘性能过低, 导致读取php文件速度过慢, 时间变长. 测试了各种解决方案之后, <a href="//docker-sync.io">docker-sync</a> 解决了这个问题, 将整个网页的加载时间由5s缩短为300ms.</p>
-<p>更新: docker-sync有各种玄学bug, 还是虚拟机为妙.</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://leoleoasd.me/2019/06/13/oneplus-7-pro-shua-ji-jiao-cheng/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Leo">
-      <meta itemprop="description" content="Yet another blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Leo">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/06/13/oneplus-7-pro-shua-ji-jiao-cheng/" class="post-title-link" itemprop="url">Oneplus 7 Pro 刷机教程</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-06-13 13:04:28" itemprop="dateCreated datePublished" datetime="2019-06-13T13:04:28+08:00">2019-06-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-07-10 15:58:01" itemprop="dateModified" datetime="2019-07-10T15:58:01+08:00">2019-07-10</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong>不同批次的手机安装的出厂H2OS版本不同, 本流程不一定适用于所有手机.</strong></p>
-<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><ol>
-<li>从<a href="https://developer.android.com/studio/releases/platform-tools" target="_blank" rel="noopener">这里</a>下载相关工具包</li>
-<li>系统设置-关于手机 点击7次系统版本号 开启开发者模式</li>
-<li>开发者模式中开启”高级重启”和”OEM解锁”</li>
-<li>长按电源键, 选择重启到引导加载器</li>
-<li>连接电脑, 在电脑上运行 <code>fastboot oem unlock</code></li>
-<li>在手机上确认</li>
-</ol>
-<h3 id="氧OS"><a href="#氧OS" class="headerlink" title="氧OS"></a>氧OS</h3><p>绝大部分手机出厂预装的H2os中BootLoader的版本较低, 不支持安装TWRP. 需先安装O2OS.</p>
-<ol>
-<li>到<a href="https://otafsg1.h2os.com/patch/amazone2/GLO/OnePlus7ProOxygen/OnePlus7ProOxygen_21.O.11_GLO_011_1906160627/OnePlus7ProOxygen_21.O.11_OTA_011_all_1906160627_b59b4dfc6d8c9a.zip" target="_blank" rel="noopener">这里</a>下载O2OS, 并用adb导入到手机中.</li>
-<li>在手机设置-系统更新-本地升级中, 选择此ZIP包.</li>
-<li>若成功刷入, 即可开始刷入TWRP.</li>
-<li>若刷入不成功, 则预装的H2os版本较高. 使用以下步骤安装O2OS:<ol>
-<li>将安装包通过adb导入手机中, 重启进入bootloader, 连接电脑</li>
-<li>在电脑上从<a href="https://twrp.me/oneplus/oneplus7pro.html" target="_blank" rel="noopener">这里</a> 下载TWRP的两个文件(img,zip)</li>
-<li>电脑上运行 <code>fastboot boot twrp-3.3.1-3-guacamole.img</code></li>
-<li>手机会重启进入TWRP. 三清后刷入氧os安装包, 刷入后再进行一次三清</li>
-<li>重启进入系统. 若无限循环进入revocery, 则再次连接电脑, 运行fastboot指令进入TWRP后选择 Advanced - Fix Revocery Bootloop</li>
-</ol>
-</li>
-</ol>
-<h3 id="TWRP"><a href="#TWRP" class="headerlink" title="TWRP"></a>TWRP</h3><ol>
-<li>在电脑上从<a href="https://twrp.me/oneplus/oneplus7pro.html" target="_blank" rel="noopener">这里</a> 下载TWRP的两个文件(img,zip)</li>
-<li>将zip文件通过adb导入手机</li>
-<li>手机重启进入 Bootloader 连接电脑</li>
-<li>电脑上运行 <code>fastboot boot twrp-3.3.1-3-guacamole.img</code></li>
-<li>手机会进入临时的TWRP. 在此临时的TWRP中选择刷入上面导入的 TWRP zip 包</li>
-</ol>
-<h3 id="Magisk"><a href="#Magisk" class="headerlink" title="Magisk"></a>Magisk</h3><ol>
-<li>下载 Magisk Manager 以及 magisk zip包</li>
-<li>重启进入 Revocery , 刷入ZIP包即可.</li>
-</ol>
-<h3 id="OTA"><a href="#OTA" class="headerlink" title="OTA"></a>OTA</h3><p>按照O2OS - TWRP - Magisk的顺序刷入即可.</p>
-<ol>
-<li>下载完整包, 并准备好TWRP安装包, Magisk安装包. 重启进入TWRP.</li>
-<li>TWRP内先后刷入ROM与TWRP</li>
-<li>TWRP内选择重启到另一个slot</li>
-<li>TWRP内安装Magisk</li>
-<li>重启进入系统</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -785,7 +857,7 @@ script_filename = /data/www/whmcs//admin/login.php
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-count">22</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -798,7 +870,7 @@ script_filename = /data/www/whmcs//admin/login.php
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

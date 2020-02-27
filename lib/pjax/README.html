@@ -21,7 +21,7 @@ _config.yml  crowdin.yml  docs  gulpfile.js  languages  layout  LICENSE.md  pack
 <p><strong>And, if you wants to use the CDN, then need to set:</strong> (you also need to find your corresponding theme css link in <a href="https://www.jsdelivr.com/package/npm/pjax-js?path=themes">jsdelivr</a>)</p>
 <pre><code class="yml"><span class="attr">vendors:</span>
   <span class="string">...</span>
-<span class="attr">  pjax:</span> <span class="string">//cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js</span></code></pre>
+  <span class="attr">pjax:</span> <span class="string">//cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js</span></code></pre>
 <h1 align="center">Update</h1>
 
 <pre><code class="sh">$ <span class="built_in">cd</span> themes/next/<span class="built_in">source</span>/lib/pjax
@@ -87,7 +87,7 @@ npm run build</code></pre>
 </ul>
 <h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p><em>Pjax is fully automatic</em>. You don’t need to change anything about your existing HTML,<br>you just need to designate which elements on your page that you want to be replaced when your site is navigated.</p>
 <p>Consider the following page.</p>
-<pre><code class="html"><span class="meta">&lt;!DOCTYPE html&gt;</span>
+<pre><code class="html"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span>
 <span class="tag">&lt;<span class="name">html</span>&gt;</span>
 <span class="tag">&lt;<span class="name">head</span>&gt;</span>
   <span class="comment">&lt;!-- metas, title, styles, etc --&gt;</span>
@@ -120,7 +120,7 @@ npm run build</code></pre>
   <span class="tag">&lt;/<span class="name">aside</span>&gt;</span>
 
   <span class="tag">&lt;<span class="name">footer</span> <span class="attr">class</span>=<span class="string">"the-footer"</span>&gt;</span>
-    &amp;copy; My Cool Blog
+    <span class="symbol">&amp;copy;</span> My Cool Blog
   <span class="tag">&lt;/<span class="name">footer</span>&gt;</span>
 
   <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"onDomReadystuff.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span>
@@ -231,7 +231,7 @@ pjax.refresh(newContent);</code></pre>
 })</code></pre>
 <p>If a query returns multiples items, it will just keep the index.</p>
 <p>Example of what you can do:</p>
-<pre><code class="html"><span class="meta">&lt;!DOCTYPE html&gt;</span>
+<pre><code class="html"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span>
 <span class="tag">&lt;<span class="name">html</span>&gt;</span>
 <span class="tag">&lt;<span class="name">head</span>&gt;</span>
   <span class="tag">&lt;<span class="name">title</span>&gt;</span>Page title<span class="tag">&lt;/<span class="name">title</span>&gt;</span>
@@ -310,7 +310,7 @@ pjax.refresh(newContent);</code></pre>
 <p><em>Note that <code>remove</code> includes <code>Animated--reverse</code> which is a simple way to not have to have a duplicate transition (slideIn + reverse =&gt; slideOut).</em></p>
 <p>Here is some css that works well with the above configuration:</p>
 <pre><code class="css"><span class="comment">/*</span>
-<span class="comment">  Note: If your content elements don't have a fixed width it can cause</span>
+<span class="comment">  <span class="doctag">Note:</span> If your content elements don't have a fixed width it can cause</span>
 <span class="comment">  an issue when positioning absolutely</span>
 <span class="comment">*/</span>
 <span class="selector-class">.js-Pjax</span> { <span class="attribute">position</span>: relative } <span class="comment">/* parent element where switch will be made */</span>
@@ -340,31 +340,31 @@ pjax.refresh(newContent);</code></pre>
 
 <span class="selector-class">.Animate--slideInRight</span> { <span class="attribute">animation-name</span>: Animation-slideInRight }
 
-@<span class="keyword">keyframes</span> Animation-slideInRight {
+<span class="keyword">@keyframes</span> Animation-slideInRight {
   0% {
     <span class="attribute">opacity</span>: <span class="number">0</span>;
-    <span class="attribute">transform</span>: <span class="built_in">translateX</span>(100rem);
+    <span class="attribute">transform</span>: <span class="built_in">translateX</span>(<span class="number">100rem</span>);
   }
 
   100% {
-    <span class="attribute">transform</span>: <span class="built_in">translateX</span>(0);
+    <span class="attribute">transform</span>: <span class="built_in">translateX</span>(<span class="number">0</span>);
   }
 }
 
 <span class="selector-class">.Animate--slideInLeft</span> { <span class="attribute">animation-name</span>: Animation-slideInLeft }
 
-@<span class="keyword">keyframes</span> Animation-slideInLeft {
+<span class="keyword">@keyframes</span> Animation-slideInLeft {
   0% {
     <span class="attribute">opacity</span>: <span class="number">0</span>;
-    <span class="attribute">transform</span>: <span class="built_in">translateX</span>(-100rem);
+    <span class="attribute">transform</span>: <span class="built_in">translateX</span>(-<span class="number">100rem</span>);
   }
 
   100% {
-    <span class="attribute">transform</span>: <span class="built_in">translateX</span>(0);
+    <span class="attribute">transform</span>: <span class="built_in">translateX</span>(<span class="number">0</span>);
   }
 }</code></pre>
 <p>To give context to this CSS, here is an HTML snippet:</p>
-<pre><code class="html"><span class="meta">&lt;!doctype html&gt;</span>
+<pre><code class="html"><span class="meta">&lt;!doctype <span class="meta-keyword">html</span>&gt;</span>
 <span class="tag">&lt;<span class="name">html</span>&gt;</span>
 <span class="tag">&lt;<span class="name">head</span>&gt;</span>
   <span class="tag">&lt;<span class="name">title</span>&gt;</span>Page Title<span class="tag">&lt;/<span class="name">title</span>&gt;</span>

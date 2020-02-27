@@ -4,6 +4,44 @@
   
     
     <entry>
+      <title>Go 语言中让某个协程无限堵塞的几种方式.</title>
+      <link href="/2020/02/27/golang-block-a-goroutine/"/>
+      <url>/2020/02/27/golang-block-a-goroutine/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Go-语言中让某个协程无限堵塞的几种方式"><a href="#Go-语言中让某个协程无限堵塞的几种方式" class="headerlink" title="Go 语言中让某个协程无限堵塞的几种方式."></a>Go 语言中让某个协程无限堵塞的几种方式.</h1><p>Go 语言自带的 goroutine 特性会让我们需要在某些时候由 <code>main</code> 函数启动一些协程之后就无限阻塞, 让别的协程处理问题. 以下是一些方式:</p><h3 id="死循环法"><a href="#死循环法" class="headerlink" title="死循环法"></a>死循环法</h3><pre class="line-numbers language-go"><code class="language-go"><span class="token keyword">for</span> <span class="token punctuation">{</span><span class="token punctuation">;</span><span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>使用这种方式会让你的程序 <strong>随机暴毙</strong>, 无法 Debug 找到问题出在哪儿. </p><p>原因: go 语言中的 goroutine <strong>并不是线程</strong>, 当且仅当遇到系统调用和io操作等时候会主动让出自己的时间片等待外部数据. 但是, 当程序运行死循环的时候 <strong>并没有任何io操作</strong>, 不会主动让出自己的时间片. 又由于线程调度的原因, 程序会在一个<strong>随机时间</strong>进入死循环执行, 导致整个程序所有协程全部卡死.<br>不仅如此, 由于系统会在别的协程进行io操作的时候进行携程调度, 因此 <strong>表面上观察到的现象是别的携程在进行io操作的时候堵死整个程序</strong> , 几乎无法找到bug在哪儿 🌝</p><h3 id="死循环让出时间片法"><a href="#死循环让出时间片法" class="headerlink" title="死循环让出时间片法"></a>死循环让出时间片法</h3><pre class="line-numbers language-go"><code class="language-go"><span class="token keyword">for</span> <span class="token punctuation">{</span>    runtime<span class="token punctuation">.</span><span class="token function">Gosched</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><p>死循环执行 <code>runtime.Gosched()</code> 这一函数, 执行这个函数会让出当前协程的时间片, 稍后再回到此协程. 不会出bug, 但是效率偏低. (因为仍然在不断地切换到这个携程.)</p><h3 id="死循环Sleep法"><a href="#死循环Sleep法" class="headerlink" title="死循环Sleep法"></a>死循环Sleep法</h3><pre class="line-numbers language-go"><code class="language-go"><span class="token keyword">for</span> <span class="token punctuation">{</span>    time<span class="token punctuation">.</span><span class="token function">Sleep</span><span class="token punctuation">(</span>Time<span class="token punctuation">.</span>Hour<span class="token punctuation">)</span><span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><p>同上, 仍然有轻微的(但完全可以忽略)效率问题, 但是这样实现十分不优雅. </p><h3 id="阻塞的读取空数据法"><a href="#阻塞的读取空数据法" class="headerlink" title="阻塞的读取空数据法:"></a>阻塞的读取空数据法:</h3><pre class="line-numbers language-go"><code class="language-go">blockChan <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> <span class="token builtin">int</span><span class="token punctuation">)</span>a <span class="token operator">:=</span> <span class="token operator">&lt;-</span> blockChan<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p>这种方法创建一个不会有数据的 <code>Channel</code>, 并试图从中读取数据. 因为永远读不到数据, 因此会堵塞这个协程.</p><p>无效率问题, 但是实现仍然不优雅.</p><h3 id="WaitGroup法"><a href="#WaitGroup法" class="headerlink" title="WaitGroup法:"></a>WaitGroup法:</h3><pre class="line-numbers language-go"><code class="language-go">w <span class="token operator">:=</span> sync<span class="token punctuation">.</span>WaitGroup<span class="token punctuation">{</span><span class="token punctuation">}</span>wg<span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>wg<span class="token punctuation">.</span><span class="token function">Wait</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><p>创建一个<code>WaitGroup</code>, 调用 <code>wait</code> 方法无限等待. 无效率问题, 但是仍然不优雅(要写三行).</p><h3 id="Select法"><a href="#Select法" class="headerlink" title="Select法:"></a>Select法:</h3><pre class="line-numbers language-go"><code class="language-go"><span class="token keyword">select</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p><code>select</code>被用于同步或异步的从<code>Channel</code>中读取数据. 因为这里没有指定任何<code>Channel</code>, 同时没有<code>default</code>来进行异步读取, 程序会阻塞的试图从没有<code>channel</code>中读取数据.</p><p>没有创建任何变量, 0内存开销, 同时调度器也再也不会调度这个协程, 也同样没有性能开销. </p><p>(关键是只要一行)</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Golang 折腾记录 采坑记录 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Raw String 的巨坑</title>
+      <link href="/2020/02/27/python-raw-string/"/>
+      <url>/2020/02/27/python-raw-string/</url>
+      
+        <content type="html"><![CDATA[<h1 id="Raw-String-的巨坑"><a href="#Raw-String-的巨坑" class="headerlink" title="Raw String 的巨坑"></a>Raw String 的巨坑</h1><p>众所周知, 在编程语言中<code>\</code>字符有着特别的意义. 在一个字符串中, <code>\</code>字符会 “转义” 紧接着他的一个字符. 如, <code>\n</code> 会被转义为换行符, <code>\t</code> 会被转义为制表符等. 这种做法极大地方便了编程, 给予了我们一种方便的在字符串字面量 (源代码中的固定的量) 中表示一个无法输入的或者会破坏语法结构的字符的方式.</p><p>但是, 在有大量<code>\</code>的情况下我们不希望字符串中的 <code>\</code> 字符被转义, 如在表示地址或正则表达式的时候. 因此, 很多语言提供了 Raw String 字面量, 在 Raw string 字面量中 <code>\</code> 字符被视为普通的字符而不是转义符. 正如 Python 文档中描述的: </p><blockquote><p>Both string and bytes literals may optionally be prefixed with a letter ‘r’ or ‘R’; such strings are called raw strings and treat backslashes as literal characters. </p></blockquote><blockquote><p>字符串与字节字面量都可以以一个 r 或者 R 前缀来表示原始字符串. 在原始字符串中, \ 字符被当做普通字符而不是转义符来处理.</p></blockquote><p>正如, 在Python中:</p><pre class="line-numbers language-python"><code class="language-python"><span class="token operator">>></span><span class="token operator">></span> <span class="token keyword">print</span><span class="token punctuation">(</span>r<span class="token string">"asd\nsd\nsd"</span><span class="token punctuation">)</span>asd\nsd\nsd<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre><p>\n 会保持原样输出而不是被替换为换行符. </p><p>那么, 问题来了: 下面的代码会输出什么?</p><pre class="line-numbers language-python"><code class="language-python"><span class="token keyword">print</span><span class="token punctuation">(</span>r"\"<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><p>可能看到语法高亮的颜色不太对劲就会让你意识到, 在Python中输出一个这样的字符串会报错而不是输出一个 \ 字符. 在Python文档中这样写道:</p><blockquote><p>Even in a raw literal, quotes can be escaped with a backslash, but the backslash remains in the result; for example, r”&quot;“ is a valid string literal consisting of two characters: a backslash and a double quote; r”&quot; is not a valid string literal (even a raw string cannot end in an odd number of backslashes). Specifically, a raw literal cannot end in a single backslash (since the backslash would escape the following quote character). Note also that a single backslash followed by a newline is interpreted as those two characters as part of the literal, not as a line continuation.</p></blockquote><blockquote><p>即使在一个原始字面量中, 引号仍然会被 \ 字符转义, 只不过 \ 字符仍然保留在结果中. 如: r”&quot;“ 是一个合法的字符串而 r”&quot; 会被认为缺少了一个引号.</p></blockquote><p>这是因为, 在原始字面量的处理中, 并不是去掉了转义. 转义操作仍然在进行, 只不过正常情况下 ‘\n’ 会转移成换行符, 但是在原始字面量中会转移为字符串\n. 在分析那些字符需要转义的时候, 编译器(或者说解释器)并不清楚这个字符是否在一个 Raw String 中. 编译器会把他标记为需要转义, 在之后的步骤中再完成具体的转移操作. 但是对于 r”&quot; 这个字符串, 在第一步的时候编译器会认为 \ 符号转义了后面的”, 导致这个字符串的引号数量不匹配, 爆出语法错误. </p><p>(<del>所以锅还是得丢给编译器</del>)</p><p>注: 上文中编译器指广义上的编译器或解释器等.</p><p>感谢群里的小伙伴们, 没有你们的帮助和讨论就不会有这篇文章. </p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Python string 编译原理 采坑记录 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>鼠年大吉</title>
       <link href="/2020/01/24/shu-nian/"/>
       <url>/2020/01/24/shu-nian/</url>
