@@ -169,6 +169,262 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://leoleoasd.me/2019/11/09/mei-ri-yi-ti-mei-wei-shu-zi-wen-ti/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Leo">
+      <meta itemprop="description" content="Yet another blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Leo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/09/mei-ri-yi-ti-mei-wei-shu-zi-wen-ti/" class="post-title-link" itemprop="url">每日一题 每位数字问题</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-11-09 19:11:11 / 修改时间：19:11:25" itemprop="dateCreated datePublished" datetime="2019-11-09T19:11:11+08:00">2019-11-09</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="大概每日一题"><a href="#大概每日一题" class="headerlink" title="大概每日一题"></a>大概每日一题</h1><p>首先, 给各位道个歉. 昨天由于<strong>沉迷学习</strong>忘了更新, <del>绝对不是忙于抢新题库的一血</del></p>
+<p>那么,</p>
+<h2 id="作天的题"><a href="#作天的题" class="headerlink" title="作天的题"></a>作天的题</h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><pre class="line-numbers language-cpp"><code class="language-cpp">本关任务：计算正整数num的各位上的数字之积。
+例如：
+输入：<span class="token number">2583</span>  经过<span class="token punctuation">(</span>2x5x8x3<span class="token punctuation">)</span> 输出：<span class="token number">240</span>
+输入：<span class="token number">102</span>   经过<span class="token punctuation">(</span>1x0x2<span class="token punctuation">)</span>   输出：<span class="token number">0</span>
+输入：<span class="token number">136</span>   经过<span class="token punctuation">(</span>1x3x6<span class="token punctuation">)</span>   输出：<span class="token number">18</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h3><pre class="line-numbers language-cpp"><code class="language-cpp">一个数num<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h3><pre class="line-numbers language-cpp"><code class="language-cpp">运算结果<span class="token punctuation">(</span>一个整数<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="做题思路1"><a href="#做题思路1" class="headerlink" title="做题思路1"></a>做题思路1</h2><p>循环, 每次取一位, 和ans变量相乘.</p>
+<h3 id="伪代码"><a href="#伪代码" class="headerlink" title="伪代码:"></a>伪代码:</h3><pre class="line-numbers language-cpp"><code class="language-cpp">ans <span class="token operator">=</span> <span class="token number">1</span>
+输入num
+k <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token keyword">while</span><span class="token punctuation">(</span>num <span class="token operator">/</span> k <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token operator">:</span>
+    ans <span class="token operator">*</span><span class="token operator">=</span> <span class="token punctuation">(</span>num<span class="token operator">/</span>k<span class="token punctuation">)</span><span class="token operator">%</span><span class="token number">10</span> <span class="token comment" spellcheck="true">// num去掉后面的位数后取最后一位</span>
+    k <span class="token operator">*</span><span class="token operator">=</span> <span class="token number">10</span>
+输出ans<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>这种思路的核心在于, 设置中间变量k. 每次把num除k来去掉尾部多余的位数之后取最后一位累乘.</p>
+<h2 id="做题思路2"><a href="#做题思路2" class="headerlink" title="做题思路2"></a>做题思路2</h2><p>循环, 每次取num的最后一位, 和ans变量相乘后<strong>去掉最后一位</strong></p>
+<h3 id="伪代码-1"><a href="#伪代码-1" class="headerlink" title="伪代码:"></a>伪代码:</h3><pre class="line-numbers language-cpp"><code class="language-cpp">ans <span class="token operator">=</span> <span class="token number">1</span>
+读入num
+<span class="token keyword">while</span> num <span class="token operator">!=</span> <span class="token number">0</span><span class="token operator">:</span>
+    ans <span class="token operator">*</span><span class="token operator">=</span> <span class="token punctuation">(</span>num<span class="token operator">%</span><span class="token number">10</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// ans乘以num的最后一位</span>
+    num <span class="token operator">/</span><span class="token operator">=</span> <span class="token number">10</span>       <span class="token comment" spellcheck="true">// 核心: 去掉num的最后一位</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>这个思路的核心在于, 每次取最后一位num用于计算后<strong>去掉最后一位</strong>.<br>相比第一个思路的好处是 <strong>省略了一个中间变量</strong>.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://leoleoasd.me/2019/11/09/1024-te-bie-jie-mu/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Leo">
+      <meta itemprop="description" content="Yet another blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Leo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/09/1024-te-bie-jie-mu/" class="post-title-link" itemprop="url">1024特别节目</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-11-09 19:10:44 / 修改时间：19:10:51" itemprop="dateCreated datePublished" datetime="2019-11-09T19:10:44+08:00">2019-11-09</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="1024特别节目"><a href="#1024特别节目" class="headerlink" title="1024特别节目"></a>1024特别节目</h1><p>今天是1024程序员节</p>
+<p>不知道能为各位做点什么,<br>给各位画幅画吧</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp">
+  O  
+<span class="token operator">~</span><span class="token operator">~</span><span class="token operator">~</span><span class="token operator">~</span><span class="token operator">~</span>
+<span class="token operator">~</span><span class="token operator">~</span><span class="token operator">~</span><span class="token operator">~</span><span class="token operator">~</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>一副海上明月图送给大家</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://leoleoasd.me/2019/11/09/mei-ri-yi-ti-an-dian/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Leo">
+      <meta itemprop="description" content="Yet another blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Leo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/09/mei-ri-yi-ti-an-dian/" class="post-title-link" itemprop="url">每日一题 鞍点</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-11-09 19:10:12 / 修改时间：19:10:31" itemprop="dateCreated datePublished" datetime="2019-11-09T19:10:12+08:00">2019-11-09</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="每日一题"><a href="#每日一题" class="headerlink" title="每日一题"></a>每日一题</h1><p>公众号新开了个栏目, 叫大概每日一题.</p>
+<p>那么问题来了, 为啥叫大概每日一题呢?</p>
+<p>鸽子表情包</p>
+<h2 id="今天的题"><a href="#今天的题" class="headerlink" title="今天的题"></a>今天的题</h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述:"></a>题目描述:</h3><pre><code>找出具有m行n列二维数组Array的“鞍点”，即该位置上的元素在该行上最大，在该列上最小，其中1&lt;=m,n&lt;=10。</code></pre><h3 id="输入"><a href="#输入" class="headerlink" title="输入:"></a>输入:</h3><pre><code>第一行有两个数m和n，下面有m行，每行有n个数。</code></pre><h3 id="输出"><a href="#输出" class="headerlink" title="输出:"></a>输出:</h3><pre><code>Array[i][j]=x</code></pre><h2 id="做题思路"><a href="#做题思路" class="headerlink" title="做题思路"></a>做题思路</h2><p>这道题的思路还是比较清晰的: 枚举每一行, 寻找这一行里最大的数在第几列, 寻找那一列最小的数, 看看这一行最大的数是不是这一列最小的数.</p>
+<h2 id="伪代码"><a href="#伪代码" class="headerlink" title="伪代码:"></a>伪代码:</h2><pre><code>输入m,n
+循环i从0到m-1
+    循环j从0到n-1
+        读入data[i][j]
+
+循环i从0到m-1
+    max=data[i][0]
+    pos=0
+    循环j从0到n-1
+        如果data[i][j] 大于 max
+            更新max与pos
+
+    flag = 1
+    循环j从0到n-1
+        如果data[j][pos]小于max
+            flag = 0
+    如果flag=1 说明data[i][pos]是鞍点
+        输出,退出程序
+输出none</code></pre><h2 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h2><p>在找数组的最小值的时候有两种实现方式:</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">int</span> min <span class="token operator">=</span> <span class="token number">0x70000000</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> pos <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span><span class="token operator">++</span> i<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>min <span class="token operator">&lt;</span> data<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        min <span class="token operator">=</span> data<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        pos <span class="token operator">=</span> i<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>与</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">int</span> min <span class="token operator">=</span> data<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> pos <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span><span class="token operator">++</span> i<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>min <span class="token operator">&lt;</span> data<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        min <span class="token operator">=</span> data<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        pos <span class="token operator">=</span> i<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>第一种方式将min设为极大值(或将max设为极小值), 第二种方式奖min设为数组第一项的值.</p>
+<p>这两种方式都是正确的, 要注意的就是</p>
+<ol>
+<li>使用第一种方式时设置的极大值一定要很大.<ol>
+<li>int所能存储的最大值是0x7fffffff, 所以对于以上情况把min设置为0x7ffffff是安全的.</li>
+<li>对于要比较min+data[i]和data[i]的大小的时候, min的初值应设置为int所能存储的最大值的一半, 以保证min+data[i]仍在int范围内. 对于这种情况, 0x3f3f3f3f是一个安全的值.</li>
+</ol>
+</li>
+<li>使用第二种方式一定要把pos变量初始化为0</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://leoleoasd.me/2019/06/30/mac-shang-docker-de-yi-xie-keng/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -462,104 +718,11 @@ script_filename = /data/www/whmcs//admin/login.php
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://leoleoasd.me/2019/06/12/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Leo">
-      <meta itemprop="description" content="Yet another blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Leo">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/06/12/hello-world/" class="post-title-link" itemprop="url">Hello, World!</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-06-12 09:00:00" itemprop="dateCreated datePublished" datetime="2019-06-12T09:00:00+08:00">2019-06-12</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-06-30 16:07:25" itemprop="dateModified" datetime="2019-06-30T16:07:25+08:00">2019-06-30</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/General/" itemprop="url" rel="index">
-                    <span itemprop="name">General</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="起源"><a href="#起源" class="headerlink" title="起源"></a>起源</h2><p>高考前, 就一直想弄一个自己的blog. Wordpress, typeecho, 试过了许多程序, 也弄过好多次各类blog, 最终都不了了之.</p>
-<p>这一次,打算还是用hexo弄. 选用hexo的原因呢, 主要有:</p>
-<ol>
-<li>可以用 Github Pages 部署, 没有服务器费用, 没有被攻击的风险.</li>
-<li>Markdown 书写, 更方便</li>
-<li>将来还可能搞个微信公众号, so 用 Markdown 书写的话, 可以使用批量工具将 Blog 内的内容复制到微信公众号中.</li>
-</ol>
-<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><p>先是看了看<a href="hexo.io">官方文档</a>, 研究了下hexo怎么用. 接着翻了翻收藏, 找到了以前收藏的一个hexo主题 <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank" rel="noopener">Matery</a>. Clone下来配置一通后, 就完成了你们现在看到的 Blog.</p>
-<h2 id="愿景"><a href="#愿景" class="headerlink" title="愿景"></a>愿景</h2><p>将来可能更新的内容:</p>
-<ol>
-<li>TensorFlow教程</li>
-<li>自己写的一些PHP插件</li>
-<li>自己搞的物联网小设备</li>
-<li>自己在B站上传的VLog(可能跳票)</li>
-</ol>
-<h2 id="联系我"><a href="#联系我" class="headerlink" title="联系我"></a>联系我</h2><p>如果想挂个友联, 欢迎邮箱联系 <code>i@leoleoasd.me</code></p>
-<p>有其他想法或者建议, 也可以给我发邮件.</p>
-<p>(突然想起来高考备考的应用文套路:  <code>If you have any further questions, feel free to drop me a line.</code>)</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -625,7 +788,7 @@ script_filename = /data/www/whmcs//admin/login.php
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-count">25</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -638,7 +801,7 @@ script_filename = /data/www/whmcs//admin/login.php
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
