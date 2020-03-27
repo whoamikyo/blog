@@ -20,20 +20,20 @@
     var CONFIG = {"hostname":"leoleoasd.me","root":"/","scheme":"Muse","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="布尔运算符的断路首先, 什么是表达式? 表达式是运算符和它们的操作数的序列，它指定一项计算。 表达式的求值可以产生一个结果（比如 2+2 的求值产生结果 4），也可能产生副作用（比如对 std::printf(“%d”,4) 的求值在标准输出上打印字符 ‘4’）。  以下代码每一行的内容都是一个表达式: a = 1 a++ a = a * a + a - a | a foo() foo(a+a)">
+  <meta name="description" content="布尔运算符的短路首先, 什么是表达式? 表达式是运算符和它们的操作数的序列，它指定一项计算。 表达式的求值可以产生一个结果（比如 2+2 的求值产生结果 4），也可能产生副作用（比如对 std::printf(“%d”,4) 的求值在标准输出上打印字符 ‘4’）。  以下代码每一行的内容都是一个表达式: a = 1 a++ a = a * a + a - a | a foo() foo(a+a)">
 <meta name="keywords" content="C C++ 基础">
 <meta property="og:type" content="article">
-<meta property="og:title" content="表达式的短路">
-<meta property="og:url" content="http://leoleoasd.me/2020/03/27/biao-da-shi-de-duan-lu/index.html">
+<meta property="og:title" content="布尔运算符的断路">
+<meta property="og:url" content="http://leoleoasd.me/2020/03/27/bu-er-yun-suan-fu-de-duan-lu/index.html">
 <meta property="og:site_name" content="Leo">
-<meta property="og:description" content="布尔运算符的断路首先, 什么是表达式? 表达式是运算符和它们的操作数的序列，它指定一项计算。 表达式的求值可以产生一个结果（比如 2+2 的求值产生结果 4），也可能产生副作用（比如对 std::printf(“%d”,4) 的求值在标准输出上打印字符 ‘4’）。  以下代码每一行的内容都是一个表达式: a = 1 a++ a = a * a + a - a | a foo() foo(a+a)">
+<meta property="og:description" content="布尔运算符的短路首先, 什么是表达式? 表达式是运算符和它们的操作数的序列，它指定一项计算。 表达式的求值可以产生一个结果（比如 2+2 的求值产生结果 4），也可能产生副作用（比如对 std::printf(“%d”,4) 的求值在标准输出上打印字符 ‘4’）。  以下代码每一行的内容都是一个表达式: a = 1 a++ a = a * a + a - a | a foo() foo(a+a)">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-03-27T03:56:04.980Z">
+<meta property="og:updated_time" content="2020-03-27T03:58:24.002Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="表达式的短路">
-<meta name="twitter:description" content="布尔运算符的断路首先, 什么是表达式? 表达式是运算符和它们的操作数的序列，它指定一项计算。 表达式的求值可以产生一个结果（比如 2+2 的求值产生结果 4），也可能产生副作用（比如对 std::printf(“%d”,4) 的求值在标准输出上打印字符 ‘4’）。  以下代码每一行的内容都是一个表达式: a = 1 a++ a = a * a + a - a | a foo() foo(a+a)">
+<meta name="twitter:title" content="布尔运算符的断路">
+<meta name="twitter:description" content="布尔运算符的短路首先, 什么是表达式? 表达式是运算符和它们的操作数的序列，它指定一项计算。 表达式的求值可以产生一个结果（比如 2+2 的求值产生结果 4），也可能产生副作用（比如对 std::printf(“%d”,4) 的求值在标准输出上打印字符 ‘4’）。  以下代码每一行的内容都是一个表达式: a = 1 a++ a = a * a + a - a | a foo() foo(a+a)">
 
-<link rel="canonical" href="http://leoleoasd.me/2020/03/27/biao-da-shi-de-duan-lu/">
+<link rel="canonical" href="http://leoleoasd.me/2020/03/27/bu-er-yun-suan-fu-de-duan-lu/">
 
 
 <script id="page-configurations">
@@ -45,7 +45,7 @@
   };
 </script>
 
-  <title>表达式的短路 | Leo</title>
+  <title>布尔运算符的断路 | Leo</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141894777-1"></script>
     <script pjax>
@@ -170,7 +170,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://leoleoasd.me/2020/03/27/biao-da-shi-de-duan-lu/">
+    <link itemprop="mainEntityOfPage" href="http://leoleoasd.me/2020/03/27/bu-er-yun-suan-fu-de-duan-lu/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -183,7 +183,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          表达式的短路
+          布尔运算符的断路
         </h1>
 
         <div class="post-meta">
@@ -194,7 +194,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-03-27 11:55:56 / 修改时间：11:56:04" itemprop="dateCreated datePublished" datetime="2020-03-27T11:55:56+08:00">2020-03-27</time>
+              <time title="创建时间：2020-03-27 11:55:56 / 修改时间：11:58:24" itemprop="dateCreated datePublished" datetime="2020-03-27T11:55:56+08:00">2020-03-27</time>
             </span>
 
           
@@ -208,7 +208,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="布尔运算符的断路"><a href="#布尔运算符的断路" class="headerlink" title="布尔运算符的断路"></a>布尔运算符的断路</h1><h4 id="首先-什么是表达式"><a href="#首先-什么是表达式" class="headerlink" title="首先, 什么是表达式?"></a>首先, 什么是表达式?</h4><blockquote>
+        <h1 id="布尔运算符的短路"><a href="#布尔运算符的短路" class="headerlink" title="布尔运算符的短路"></a>布尔运算符的短路</h1><h4 id="首先-什么是表达式"><a href="#首先-什么是表达式" class="headerlink" title="首先, 什么是表达式?"></a>首先, 什么是表达式?</h4><blockquote>
 <p>表达式是运算符和它们的操作数的序列，它指定一项计算。</p>
 <p>表达式的求值可以产生一个结果（比如 2+2 的求值产生结果 4），也可能产生副作用（比如对 std::printf(“%d”,4) 的求值在标准输出上打印字符 ‘4’）。</p>
 </blockquote>
@@ -229,7 +229,7 @@ a == a<span aria-hidden="true" class="line-numbers-rows"><span></span><span></sp
 }<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>对于表达式 <code>foo()</code>, <code>i</code> 的值的变化就是他的副作用.</p>
 <p>再比如, 对于表达式 <code>printf(&quot;%d&quot;,a) + 1</code>, 输出了<code>a</code>的值就是他的副作用.</p>
-<h3 id="布尔运算符的短路"><a href="#布尔运算符的短路" class="headerlink" title="布尔运算符的短路."></a>布尔运算符的短路.</h3><p>对于 “逻辑与(&amp;&amp;)” 和 “逻辑或(||)” 这两个运算, 他们有一个不同于其他运算符的特点, 就是<strong>运算符短路</strong>.</p>
+<h3 id="布尔运算符的短路-1"><a href="#布尔运算符的短路-1" class="headerlink" title="布尔运算符的短路."></a>布尔运算符的短路.</h3><p>对于 “逻辑与(&amp;&amp;)” 和 “逻辑或(||)” 这两个运算, 他们有一个不同于其他运算符的特点, 就是<strong>运算符短路</strong>.</p>
 <p>对于与运算, 如果他左边的表达式(也叫第一操作数)计算完是假的话, 无论右边的表达式(也叫第二操作数)的结果是多少, 最终的结果一定是假, 因此此时<strong>不会计算第二操作数</strong>, 第二操作数的<strong>副作用也不会发生</strong>.</p>
 <p>对于与运算, 如果他左边的表达式(也叫第一操作数)计算完是真的话, 无论右边的表达式(也叫第二操作数)的结果是多少, 最终的结果一定是真, 因此此时<strong>不会计算第二操作数</strong>, 第二操作数的<strong>副作用也不会发生</strong>.</p>
 <p>如, 对于以下代码:</p>
@@ -254,7 +254,7 @@ printf("%d%d%d\n",a,b,c);<span aria-hidden="true" class="line-numbers-rows"><spa
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://leoleoasd.me/2020/03/27/biao-da-shi-de-duan-lu/" title="表达式的短路">http://leoleoasd.me/2020/03/27/biao-da-shi-de-duan-lu/</a>
+    <a href="http://leoleoasd.me/2020/03/27/bu-er-yun-suan-fu-de-duan-lu/" title="布尔运算符的断路">http://leoleoasd.me/2020/03/27/bu-er-yun-suan-fu-de-duan-lu/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -357,7 +357,7 @@ printf("%d%d%d\n",a,b,c);<span aria-hidden="true" class="line-numbers-rows"><spa
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#布尔运算符的断路"><span class="nav-number">1.</span> <span class="nav-text">布尔运算符的断路</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#首先-什么是表达式"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">首先, 什么是表达式?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其次-什么是表达式的副作用"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">其次, 什么是表达式的副作用?</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#布尔运算符的短路"><span class="nav-number">1.0.1.</span> <span class="nav-text">布尔运算符的短路.</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#布尔运算符的短路"><span class="nav-number">1.</span> <span class="nav-text">布尔运算符的短路</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#首先-什么是表达式"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">首先, 什么是表达式?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其次-什么是表达式的副作用"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">其次, 什么是表达式的副作用?</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#布尔运算符的短路-1"><span class="nav-number">1.0.1.</span> <span class="nav-text">布尔运算符的短路.</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -560,7 +560,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       repo        : 'blog',
       owner       : 'leoleoasd',
       admin       : ['leoleoasd'],
-      id          : '38b22139079bd0fe7ccb2ac2be5494ab',
+      id          : '7f2e0e4f89286ee7d198f2ba3f9cbdc3',
         language: 'zh-CN',
       distractionFreeMode: true
     });
