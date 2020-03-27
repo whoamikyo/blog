@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://leoleoasd.me/2020/02/27/golang-block-a-goroutine/</loc>
+    
+    <lastmod>2020-03-27T03:57:47.433Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://leoleoasd.me/2020/03/27/biao-da-shi-de-duan-lu/</loc>
     
     <lastmod>2020-03-27T03:56:04.980Z</lastmod>
@@ -40,13 +47,6 @@
     <loc>http://leoleoasd.me/2020/02/27/python-raw-string/</loc>
     
     <lastmod>2020-02-27T11:48:46.656Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://leoleoasd.me/2020/02/27/golang-block-a-goroutine/</loc>
-    
-    <lastmod>2020-02-27T11:47:56.023Z</lastmod>
     
   </url>
   
