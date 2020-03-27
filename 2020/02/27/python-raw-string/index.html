@@ -21,14 +21,14 @@
   </script>
 
   <meta name="description" content="Raw String 的巨坑众所周知, 在编程语言中\字符有着特别的意义. 在一个字符串中, \字符会 “转义” 紧接着他的一个字符. 如, \n 会被转义为换行符, \t 会被转义为制表符等. 这种做法极大地方便了编程, 给予了我们一种方便的在字符串字面量 (源代码中的固定的量) 中表示一个无法输入的或者会破坏语法结构的字符的方式. 但是, 在有大量\的情况下我们不希望字符串中的 \ 字符被转义">
-<meta name="keywords" content="Python string 编译原理 采坑记录">
+<meta name="keywords" content="踩坑记录,Python,string,编译原理">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Raw String 的巨坑">
 <meta property="og:url" content="http://leoleoasd.me/2020/02/27/python-raw-string/index.html">
 <meta property="og:site_name" content="Leo">
 <meta property="og:description" content="Raw String 的巨坑众所周知, 在编程语言中\字符有着特别的意义. 在一个字符串中, \字符会 “转义” 紧接着他的一个字符. 如, \n 会被转义为换行符, \t 会被转义为制表符等. 这种做法极大地方便了编程, 给予了我们一种方便的在字符串字面量 (源代码中的固定的量) 中表示一个无法输入的或者会破坏语法结构的字符的方式. 但是, 在有大量\的情况下我们不希望字符串中的 \ 字符被转义">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-02-27T11:48:46.656Z">
+<meta property="og:updated_time" content="2020-03-27T03:59:35.491Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Raw String 的巨坑">
 <meta name="twitter:description" content="Raw String 的巨坑众所周知, 在编程语言中\字符有着特别的意义. 在一个字符串中, \字符会 “转义” 紧接着他的一个字符. 如, \n 会被转义为换行符, \t 会被转义为制表符等. 这种做法极大地方便了编程, 给予了我们一种方便的在字符串字面量 (源代码中的固定的量) 中表示一个无法输入的或者会破坏语法结构的字符的方式. 但是, 在有大量\的情况下我们不希望字符串中的 \ 字符被转义">
@@ -173,7 +173,7 @@
     <link itemprop="mainEntityOfPage" href="http://leoleoasd.me/2020/02/27/python-raw-string/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/medias/leo@8x.png">
       <meta itemprop="name" content="Leo">
       <meta itemprop="description" content="Yet another blog">
     </span>
@@ -192,10 +192,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-02-27 19:47:02 / 修改时间：19:48:46" itemprop="dateCreated datePublished" datetime="2020-02-27T19:47:02+08:00">2020-02-27</time>
+              <time title="创建时间：2020-02-27 19:47:02" itemprop="dateCreated datePublished" datetime="2020-02-27T19:47:02+08:00">2020-02-27</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-27 11:59:35" itemprop="dateModified" datetime="2020-03-27T11:59:35+08:00">2020-03-27</time>
+              </span>
 
           
 
@@ -278,7 +284,10 @@ asd\nsd\nsd<span aria-hidden="true" class="line-numbers-rows"><span></span><span
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Python-string-编译原理-采坑记录/" rel="tag"># Python string 编译原理 采坑记录</a>
+              <a href="/tags/踩坑记录/" rel="tag"># 踩坑记录</a>
+              <a href="/tags/Python/" rel="tag"># Python</a>
+              <a href="/tags/string/" rel="tag"># string</a>
+              <a href="/tags/编译原理/" rel="tag"># 编译原理</a>
           </div>
 
         
@@ -360,6 +369,8 @@ asd\nsd\nsd<span aria-hidden="true" class="line-numbers-rows"><span></span><span
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Leo"
+      src="/medias/leo@8x.png">
   <p class="site-author-name" itemprop="name">Leo</p>
   <div class="site-description" itemprop="description">Yet another blog</div>
 </div>
@@ -381,7 +392,7 @@ asd\nsd\nsd<span aria-hidden="true" class="line-numbers-rows"><span></span><span
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -393,6 +404,9 @@ asd\nsd\nsd<span aria-hidden="true" class="line-numbers-rows"><span></span><span
       <span class="links-of-author-item">
         <a href="mailto:i@leoleoasd.me" title="E-Mail → mailto:i@leoleoasd.me"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
       </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
   </div>
 
 

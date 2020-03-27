@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://leoleoasd.me/2020/02/27/python-raw-string/</loc>
+    
+    <lastmod>2020-03-27T03:59:35.491Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://leoleoasd.me/2020/03/27/bu-er-yun-suan-fu-de-duan-lu/</loc>
     
-    <lastmod>2020-03-27T03:58:31.065Z</lastmod>
+    <lastmod>2020-03-27T03:59:28.578Z</lastmod>
     
   </url>
   
@@ -40,13 +47,6 @@
     <loc>http://leoleoasd.me/2020/03/16/lan-qiao-bei-mo-ni-ti-jie-1/</loc>
     
     <lastmod>2020-03-16T13:12:56.512Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://leoleoasd.me/2020/02/27/python-raw-string/</loc>
-    
-    <lastmod>2020-02-27T11:48:46.656Z</lastmod>
     
   </url>
   
@@ -177,14 +177,14 @@
   </url>
   
   <url>
-    <loc>http://leoleoasd.me/categories/index.html</loc>
+    <loc>http://leoleoasd.me/friends/index.html</loc>
     
     <lastmod>2019-06-30T08:07:25.531Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://leoleoasd.me/friends/index.html</loc>
+    <loc>http://leoleoasd.me/categories/index.html</loc>
     
     <lastmod>2019-06-30T08:07:25.531Z</lastmod>
     
