@@ -169,6 +169,95 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://leoleoasd.me/2020/03/27/biao-da-shi-de-duan-lu/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Leo">
+      <meta itemprop="description" content="Yet another blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Leo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/27/biao-da-shi-de-duan-lu/" class="post-title-link" itemprop="url">表达式的短路</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-03-27 11:55:56 / 修改时间：11:56:04" itemprop="dateCreated datePublished" datetime="2020-03-27T11:55:56+08:00">2020-03-27</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="布尔运算符的断路"><a href="#布尔运算符的断路" class="headerlink" title="布尔运算符的断路"></a>布尔运算符的断路</h1><h4 id="首先-什么是表达式"><a href="#首先-什么是表达式" class="headerlink" title="首先, 什么是表达式?"></a>首先, 什么是表达式?</h4><blockquote>
+<p>表达式是运算符和它们的操作数的序列，它指定一项计算。</p>
+<p>表达式的求值可以产生一个结果（比如 2+2 的求值产生结果 4），也可能产生副作用（比如对 std::printf(“%d”,4) 的求值在标准输出上打印字符 ‘4’）。</p>
+</blockquote>
+<p>以下代码每一行的内容都是一个表达式:</p>
+<pre class="line-numbers language-c++"><code class="language-c++">a = 1
+a++
+a = a * a + a - a | a
+foo()
+foo(a+a)
+a == a<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>注意, <code>a++</code> 是表达式, <code>a++;</code> 就是一个语句了</strong></p>
+<h4 id="其次-什么是表达式的副作用"><a href="#其次-什么是表达式的副作用" class="headerlink" title="其次, 什么是表达式的副作用?"></a>其次, 什么是表达式的副作用?</h4><p>表达式, 顾名思义, 是有一个值的. 很多情况下我们求一个表达式的值, 是为了使用它的值. 在求值的过程中对于变量的修改等操作被称为表达式的副作用.</p>
+<p>比如, 对于表达式 <code>y++</code>, <code>y</code>的值<code>+1</code>就是这个表达式的副作用.</p>
+<p>比如, 对于以下函数:</p>
+<pre class="line-numbers language-c++"><code class="language-c++">int foo(){
+    static int i = 0;
+    return ++i;
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>对于表达式 <code>foo()</code>, <code>i</code> 的值的变化就是他的副作用.</p>
+<p>再比如, 对于表达式 <code>printf(&quot;%d&quot;,a) + 1</code>, 输出了<code>a</code>的值就是他的副作用.</p>
+<h3 id="布尔运算符的短路"><a href="#布尔运算符的短路" class="headerlink" title="布尔运算符的短路."></a>布尔运算符的短路.</h3><p>对于 “逻辑与(&amp;&amp;)” 和 “逻辑或(||)” 这两个运算, 他们有一个不同于其他运算符的特点, 就是<strong>运算符短路</strong>.</p>
+<p>对于与运算, 如果他左边的表达式(也叫第一操作数)计算完是假的话, 无论右边的表达式(也叫第二操作数)的结果是多少, 最终的结果一定是假, 因此此时<strong>不会计算第二操作数</strong>, 第二操作数的<strong>副作用也不会发生</strong>.</p>
+<p>对于与运算, 如果他左边的表达式(也叫第一操作数)计算完是真的话, 无论右边的表达式(也叫第二操作数)的结果是多少, 最终的结果一定是真, 因此此时<strong>不会计算第二操作数</strong>, 第二操作数的<strong>副作用也不会发生</strong>.</p>
+<p>如, 对于以下代码:</p>
+<pre class="line-numbers language-c++"><code class="language-c++">int a,b,c;
+a = 1;
+b = 1;
+c = a++ || b++;
+printf("%d%d%d\n",a,b,c);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>因为表达式<code>a++</code>的计算结果为<code>1</code>, 也就是真, 因此不会计算<code>b++</code>, 程序会输出211.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://leoleoasd.me/2020/03/16/lan-qiao-bei-2019-xiao-nei-mo-ni-ti-mu/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -941,90 +1030,6 @@ asd\nsd\nsd<span aria-hidden="true" class="line-numbers-rows"><span></span><span
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://leoleoasd.me/2020/01/24/shu-nian/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Leo">
-      <meta itemprop="description" content="Yet another blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Leo">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/01/24/shu-nian/" class="post-title-link" itemprop="url">鼠年大吉</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-01-24 21:34:41 / 修改时间：21:39:36" itemprop="dateCreated datePublished" datetime="2020-01-24T21:34:41+08:00">2020-01-24</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>不多说了, 就祝各位鼠年大吉吧.</p>
-<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;stdio.h></span></span>
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token keyword">int</span> O<span class="token operator">=</span><span class="token constant">__LINE__</span><span class="token punctuation">;</span>
-<span class="token macro property">#<span class="token directive keyword">define</span> OO putchar</span>
-<span class="token macro property">#<span class="token directive keyword">define</span> Oo  *</span>
-<span class="token macro property">#<span class="token directive keyword">define</span> O0 +</span>
-<span class="token macro property">#<span class="token directive keyword">define</span> O00 -</span>
-<span class="token macro property">#<span class="token directive keyword">define</span> OOO /</span>
-<span class="token function">OO</span><span class="token punctuation">(</span>O Oo  O Oo  O <span class="token function">Oo</span>  <span class="token punctuation">(</span>O O0 O OOO O<span class="token punctuation">)</span> <span class="token function">Oo</span>  <span class="token punctuation">(</span>O O0 O OOO O<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">OO</span><span class="token punctuation">(</span>O Oo  O <span class="token function">Oo</span>  <span class="token punctuation">(</span>O Oo  O O0 O OOO O<span class="token punctuation">)</span> <span class="token function">Oo</span>  <span class="token punctuation">(</span>O Oo  O O0 O OOO O<span class="token punctuation">)</span> O00 O O00 O OOO O<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">OO</span><span class="token punctuation">(</span>O Oo  O Oo  O Oo  O <span class="token function">Oo</span>  <span class="token punctuation">(</span>O Oo  O Oo  O O00 O OOO O<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">OO</span><span class="token punctuation">(</span>O Oo  O Oo  O Oo  O <span class="token function">Oo</span>  <span class="token punctuation">(</span>O Oo  O Oo  O O00 O OOO O<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">OO</span><span class="token punctuation">(</span><span class="token punctuation">(</span>O <span class="token function">Oo</span>  <span class="token punctuation">(</span>O O0 O O0 O<span class="token punctuation">)</span> O00  O  OOO  O<span class="token punctuation">)</span> <span class="token function">Oo</span>  <span class="token punctuation">(</span>O <span class="token function">Oo</span>  <span class="token punctuation">(</span>O O0 O O0 O<span class="token punctuation">)</span> O00 O OOO O<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">OO</span><span class="token punctuation">(</span>O Oo  O Oo  O Oo  O Oo  O<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">OO</span><span class="token punctuation">(</span><span class="token punctuation">(</span>O Oo  O Oo  O O00 O OOO O<span class="token punctuation">)</span> <span class="token function">Oo</span>  <span class="token punctuation">(</span>O <span class="token function">Oo</span>  <span class="token punctuation">(</span>O O0 O O0 O<span class="token punctuation">)</span> O00 O OOO O<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">OO</span><span class="token punctuation">(</span>O Oo  O <span class="token function">Oo</span>  <span class="token punctuation">(</span>O Oo  O O0 O OOO O<span class="token punctuation">)</span> <span class="token function">Oo</span>  <span class="token punctuation">(</span>O Oo  O O0 O OOO O<span class="token punctuation">)</span> <span class="token function">O0</span> <span class="token punctuation">(</span>O <span class="token function">Oo</span>  <span class="token punctuation">(</span>O O0 O O0 O<span class="token punctuation">)</span> O00 O OOO O<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">OO</span><span class="token punctuation">(</span>O Oo  O <span class="token function">Oo</span>  <span class="token punctuation">(</span>O Oo  O O0 O OOO O<span class="token punctuation">)</span> <span class="token function">Oo</span>  <span class="token punctuation">(</span>O Oo  O O0 O OOO O<span class="token punctuation">)</span> <span class="token function">O0</span> <span class="token punctuation">(</span>O <span class="token function">Oo</span>  <span class="token punctuation">(</span>O O0 O OOO O<span class="token punctuation">)</span> <span class="token function">Oo</span>  <span class="token punctuation">(</span>O O0 O OOO O<span class="token punctuation">)</span><span class="token punctuation">)</span> O00 O OOO O<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">OO</span><span class="token punctuation">(</span><span class="token punctuation">(</span>O Oo  O O0 O OOO O<span class="token punctuation">)</span> <span class="token function">Oo</span>  <span class="token punctuation">(</span>O Oo  O <span class="token function">Oo</span>  <span class="token punctuation">(</span>O O0 O O0 O OOO O<span class="token punctuation">)</span> O0 O O0 O OOO O<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">OO</span><span class="token punctuation">(</span>O Oo  O <span class="token function">Oo</span>  <span class="token punctuation">(</span>O Oo  O O0 O OOO O<span class="token punctuation">)</span> <span class="token function">Oo</span>  <span class="token punctuation">(</span>O Oo  O O0 O OOO O<span class="token punctuation">)</span> O0 O OOO O<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">OO</span><span class="token punctuation">(</span>O Oo  O Oo  O Oo  O Oo  O<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">OO</span><span class="token punctuation">(</span><span class="token punctuation">(</span>O O0 O OOO O<span class="token punctuation">)</span> <span class="token function">Oo</span>  <span class="token punctuation">(</span>O O0 O OOO O<span class="token punctuation">)</span> Oo  O <span class="token function">Oo</span>  <span class="token punctuation">(</span>O O0 O O0 O OOO O<span class="token punctuation">)</span> O00 O OOO O<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">OO</span><span class="token punctuation">(</span>O Oo  O <span class="token function">Oo</span>  <span class="token punctuation">(</span>O Oo  O O0 O OOO O<span class="token punctuation">)</span> <span class="token function">Oo</span>  <span class="token punctuation">(</span>O Oo  O O0 O OOO O<span class="token punctuation">)</span> O0 O OOO O<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">OO</span><span class="token punctuation">(</span>O Oo  O <span class="token function">Oo</span>  <span class="token punctuation">(</span>O Oo  O O0 O OOO O<span class="token punctuation">)</span> <span class="token function">Oo</span>  <span class="token punctuation">(</span>O Oo  O O0 O OOO O<span class="token punctuation">)</span> O00 O O00 O OOO O<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">OO</span><span class="token punctuation">(</span><span class="token punctuation">(</span>O Oo  O O0 O OOO O<span class="token punctuation">)</span> <span class="token function">Oo</span>  <span class="token punctuation">(</span>O Oo  O <span class="token function">Oo</span>  <span class="token punctuation">(</span>O O0 O O0 O OOO O<span class="token punctuation">)</span> O0 O O0 O OOO O<span class="token punctuation">)</span> O00 O OOO O<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">OO</span><span class="token punctuation">(</span>O Oo  O Oo  O Oo  O Oo  O O0 O OOO O<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1095,7 +1100,7 @@ asd\nsd\nsd<span aria-hidden="true" class="line-numbers-rows"><span></span><span
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-count">26</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1108,7 +1113,7 @@ asd\nsd\nsd<span aria-hidden="true" class="line-numbers-rows"><span></span><span
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
