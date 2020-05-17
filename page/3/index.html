@@ -169,6 +169,98 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://leoleoasd.me/2019/11/09/lecture1-bi-ji/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/medias/leo@8x.png">
+      <meta itemprop="name" content="Leo">
+      <meta itemprop="description" content="Yet another blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Leo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/09/lecture1-bi-ji/" class="post-title-link" itemprop="url">Lecture1 笔记</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-11-09 19:17:06 / 修改时间：19:17:41" itemprop="dateCreated datePublished" datetime="2019-11-09T19:17:06+08:00">2019-11-09</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h1><p>把大问题分解为多个相似的小问题.</p>
+<p>电影院问题: 获取人数, 如何获取?</p>
+<pre class="line-numbers language-python"><code class="language-python">函数 获取人数<span class="token punctuation">:</span>
+    如果 前面没人 返回<span class="token number">1</span>
+    否则 问前面的人 前面有几个人 返回这个数<span class="token operator">+</span><span class="token number">1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>汉诺塔问题:</p>
+<p>定义一个函数, 移动n个饼. 如果n=1, 直接移动即可. 如果n!=1, 那么对于上面的n-1个饼, <strong>最下面的饼</strong> 并不会影响上面n-1个饼的移动. 所以, 可以递归调用此函数, 移动n-1个饼.</p>
+<pre class="line-numbers language-python"><code class="language-python">定义函数 移动饼<span class="token punctuation">(</span>从哪儿<span class="token punctuation">,</span>到哪儿<span class="token punctuation">,</span>借助哪儿<span class="token punctuation">,</span>饼数量<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    如果 饼数量 <span class="token operator">==</span> <span class="token number">1</span> 
+        那么 把这个饼从<span class="token string">"从哪儿"</span>移动到<span class="token string">"到哪儿"</span>
+    否则
+        把 n <span class="token operator">-</span> <span class="token number">1</span> 个饼 从<span class="token string">"从哪儿"</span>移动到<span class="token string">"借助哪儿"</span>
+        这个时候<span class="token string">"从哪儿"</span>这根柱子上的最后一个饼可以直接移动到<span class="token string">"到哪儿"</span><span class="token punctuation">.</span>
+        所以这时候<span class="token punctuation">,</span> 移动第n个饼从<span class="token string">"从哪儿"</span>移动到<span class="token string">"到哪儿"</span>
+        然后移动 n <span class="token operator">-</span> <span class="token number">1</span> 个饼从<span class="token string">"借助哪儿"</span>到<span class="token string">"到哪儿"</span>
+        这个时候就完成了移动n个饼<span class="token punctuation">.</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>放苹果问题:</p>
+<p>定义一个函数用于解决”n个苹果放到m个盘子里”问题.</p>
+<p>那么这个问题, 可以分解为以下两种子情况:</p>
+<ol>
+<li>每一个盘子内都放一个苹果</li>
+<li>接下来不再对某个盘子放苹果</li>
+</ol>
+<pre class="line-numbers language-python"><code class="language-python">定义函数 放苹果<span class="token punctuation">(</span>苹果数<span class="token punctuation">,</span> 盘子数<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    如果 苹果数 <span class="token operator">==</span> <span class="token number">0</span> 或者 盘子数 <span class="token operator">==</span> <span class="token number">1</span>
+        返回<span class="token number">1</span>
+    如果苹果数小于盘子数<span class="token punctuation">:</span>
+        <span class="token operator">//</span> 肯定至少有盘子数<span class="token operator">-</span>苹果数个盘子空着
+        返回 放苹果<span class="token punctuation">(</span>苹果数<span class="token punctuation">,</span> 苹果数<span class="token punctuation">)</span>
+    返回 放苹果<span class="token punctuation">(</span>苹果数<span class="token operator">-</span>盘子数<span class="token punctuation">,</span> 盘子数<span class="token punctuation">)</span> <span class="token operator">//</span> 每一个盘子内都放一个苹果
+         <span class="token operator">+</span> 放苹果<span class="token punctuation">(</span>苹果数<span class="token punctuation">,</span> 盘子<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">//</span> 接下来不再对某个盘子放苹果<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>括号匹配问题:</p>
+<p>给出一个括号序列, 判断是否是匹配的括号序列.</p>
+<p>先读入字符串, 每次处理一个字符. 如果是左括号, 就入栈. 如果是右括号, 首先判断栈中是否有元素(s.size() &gt; 0), 如果有元素再判断栈顶元素是否是当前右括号对应的左括号. 如果是, 就把左括号出栈. 如果不是, 说明这个括号序列并不美观.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://leoleoasd.me/2019/11/09/zhi-zhen-shi-sha/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -876,153 +968,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://leoleoasd.me/2019/11/09/dai-ma-de-ge-shi-yu-bian-liang-de-ming-ming/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/medias/leo@8x.png">
-      <meta itemprop="name" content="Leo">
-      <meta itemprop="description" content="Yet another blog">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Leo">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/11/09/dai-ma-de-ge-shi-yu-bian-liang-de-ming-ming/" class="post-title-link" itemprop="url">代码的格式与变量的命名</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2019-11-09 19:12:05 / 修改时间：19:12:28" itemprop="dateCreated datePublished" datetime="2019-11-09T19:12:05+08:00">2019-11-09</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="代码的格式与变量的命名"><a href="#代码的格式与变量的命名" class="headerlink" title="代码的格式与变量的命名"></a>代码的格式与变量的命名</h1><p><del>(今天没题了)</del></p>
-<p>正确的代码格式能够让你一眼就看清楚代码的架构, 同时, 当你拿着你的代码问别人的时候, <del>正确的代码格式会让别人更愿意回答你的问题</del>, 别人也能更轻松找到你代码中的错误.</p>
-<p>那么, 如何才是正确的代码格式呢?</p>
-<h3 id="大括号与缩进"><a href="#大括号与缩进" class="headerlink" title="大括号与缩进"></a>大括号与缩进</h3><p>大括号的风格有两种: 换行与不换行</p>
-<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">// 换行</span>
-<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    blah<span class="token punctuation">;</span>
-    blah<span class="token punctuation">;</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span>foo<span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        blah<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">else</span>
-    <span class="token punctuation">{</span>
-        blah<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span>
-<span class="token comment" spellcheck="true">// 不换行</span>
-<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-    blah<span class="token punctuation">;</span>
-    blah<span class="token punctuation">;</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span>foo<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        blah<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
-        blah<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><del>个人更习惯后者</del>. 需要注意的就是 <strong>每遇到一个左大括号, 下一行一定要多缩进一格, 遇到一个右大括号, 下一行少缩进一格</strong>. 这样的结构能够让我们更清楚地看到多层if与for之间的层次结构关系.</p>
-<p><strong>在一般的IDE上</strong>, 选中多行代码按<code>Tab</code>键(Q左边的)即可给这几行代码的开头添加一个锁紧, 按<code>shitf-Tab</code>即可去掉一个缩进.</p>
-<p>同时, 大部分IDE的默认设置均是<strong>使用空格缩进, 每次缩进4个空格</strong>. 在某些IDE上(比如DevCPP)默认设置是使用制表符缩进, 这种设置的代码在粘贴到别的地方的时候可能出现格式错位, 建议修改为空格缩进.</p>
-<p>修改方式: Devcpp中依次打开<code>工具(Tools)-编译器选项(Compiler Options)</code>, 把左下角的<code>&quot;标签&quot;(tab)</code>选项卡中的<code>&quot;使用tab字符&quot;</code>去掉, 将<code>tab位置(Tab size)</code>修改为4.</p>
-<p>其他IDE的修改方式大同小异.</p>
-<h3 id="空格"><a href="#空格" class="headerlink" title="空格"></a>空格</h3><p>在<code>&lt; &gt; = != == ^ * + - &amp;&amp;</code>等运算符的<code>左右</code>加上空格,如:</p>
-<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">if</span><span class="token punctuation">(</span>a <span class="token operator">&lt;</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-    <span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token keyword">if</span><span class="token punctuation">(</span>a <span class="token operator">!=</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-    <span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token keyword">if</span><span class="token punctuation">(</span>foo <span class="token operator">^</span> bar<span class="token punctuation">)</span><span class="token punctuation">{</span>
-    <span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-foo <span class="token operator">=</span> bar<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>在每一个逗号的后面添加一个空格,如:</p>
-<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d%d%d%d"</span><span class="token punctuation">,</span> a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> c<span class="token punctuation">,</span> d<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>在for循环中的分号后面加一个空格, 如:</p>
-<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// PS: 在某些环境下, for循环中使用++i比i++快一丢丢</span>
-
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<p>在<code>! &amp;</code>等一元运算符(只有一个参数的运算符)后<strong>不加空格</strong>,如:</p>
-<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d%d%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>a<span class="token punctuation">,</span> <span class="token operator">&amp;</span>b<span class="token punctuation">,</span> <span class="token operator">&amp;</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>a<span class="token punctuation">)</span><span class="token punctuation">{</span>
-    <span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<h1 id="变量和函数的命名"><a href="#变量和函数的命名" class="headerlink" title="变量和函数的命名"></a>变量和函数的命名</h1><p>有意义的变量名字能够让阅读你代码的人立刻理解变量的意义是什么, 方便代码交流.</p>
-<p><strong>变量命名并没有清晰的规范, 以下的都是作者的个人经验</strong></p>
-<p>循环变量命名: <code>i j k</code></p>
-<p>和总量大小有关的变量命名: <code>m n</code></p>
-<p>数组的命名: <code>data[MAXN][MAXN] array[MAXN][MAXN]</code></p>
-<p>标志的命名: <code>flag</code><br>如:</p>
-<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token function">isPrime</span><span class="token punctuation">(</span><span class="token keyword">int</span> n<span class="token punctuation">)</span><span class="token punctuation">{</span>
-    <span class="token keyword">int</span> flag <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span> i <span class="token operator">*</span> i <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span> <span class="token operator">++</span> i<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>n <span class="token operator">%</span> i <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-            flag <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 表明找到因子</span>
-            <span class="token keyword">break</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span>flag<span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token comment" spellcheck="true">// 如果有因子</span>
-        <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
-        <span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>字符串命名: <code>str1 str2</code></p>
-<p>用英文单词命名: <code>scores[MAXN] students[MAXN]</code></p>
-<p>如果名字中要有多个英文单词, 有两种命名方式:</p>
-<ol>
-<li>驼峰命名法(camel case) 第一个字母小写, 之后每个单词的首字母大写:<br><code>thisIsAVeryLongVariableNameForSomeVeryStupidReason</code></li>
-<li>蛇形命名法(snake case) 单词和单词之间用下滑线连接<br><code>this_is_a_very_long_variable_name_for_some_very_stupid_reason</code></li>
-</ol>
-<p>两种命名方式均被广泛使用, 根据个人习惯选择即可. <del>作者印象里c语言常用的是蛇形命名法, 但不确定</del></p>
-<p>(不推荐, 但是比无意义命名好)汉语拼音命名: <code>xueshengfenshu[MAXN]</code></p>
-<p>函数命名:</p>
-<p>英文单词命名, 尽量<strong>动词开头</strong>, 如:<br><code>is_prime get_numbers solve</code></p>
-<p>算法名字命名, 如:<br><code>dfs dfs prim dijkstra</code></p>
-<p>绝对不能用的命名: <code>mian</code></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1095,7 +1040,7 @@ foo <span class="token operator">=</span> bar<span class="token punctuation">;</
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-count">27</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1108,7 +1053,7 @@ foo <span class="token operator">=</span> bar<span class="token punctuation">;</
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">17</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

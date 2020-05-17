@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://leoleoasd.me/2020/05/17/code-wave/</loc>
+    
+    <lastmod>2020-05-17T08:26:51.063Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://leoleoasd.me/2020/02/27/python-raw-string/</loc>
     
     <lastmod>2020-03-27T03:59:35.491Z</lastmod>
@@ -177,14 +184,14 @@
   </url>
   
   <url>
-    <loc>http://leoleoasd.me/friends/index.html</loc>
+    <loc>http://leoleoasd.me/categories/index.html</loc>
     
     <lastmod>2019-06-30T08:07:25.531Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://leoleoasd.me/categories/index.html</loc>
+    <loc>http://leoleoasd.me/friends/index.html</loc>
     
     <lastmod>2019-06-30T08:07:25.531Z</lastmod>
     
